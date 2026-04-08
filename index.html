@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Easy4 Disc Golf Club — based at Järta Discgolfipark in Märjamaa, Estonia.">
+  <title>Easy4 Disc Golf Club</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+
+      <a class="nav-logo" href="#home" data-nav="home" aria-label="Easy4 — home">
+        <svg class="nav-disc" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="18" cy="18" r="16" stroke="#FF8000" stroke-width="2.5" fill="none"/>
+          <circle cx="18" cy="18" r="9"  stroke="#FF8000" stroke-width="1.5" fill="none"/>
+          <circle cx="18" cy="18" r="4"  fill="#FF8000"/>
+          <ellipse cx="18" cy="18" rx="16" ry="5.5" stroke="#FF8000" stroke-width="1" fill="none" opacity="0.45"/>
+        </svg>
+        <span class="nav-logo-text">Easy4</span>
+      </a>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+      <ul class="nav-menu" id="navMenu">
+        <li><a class="nav-link active" href="#home"         data-nav="home"         aria-current="page">Home</a></li>
+        <li><a class="nav-link"        href="#events"       data-nav="events">Events</a></li>
+        <li><a class="nav-link"        href="#leaderboards" data-nav="leaderboards">Leaderboards</a></li>
+        <li><a class="nav-link"        href="#contact"      data-nav="contact">Contact</a></li>
+      </ul>
+
+    </div>
+  </nav>
+
+  <!-- ===== MAIN ===== -->
+  <main>
+
+    <!-- ── HOME ─────────────────────────────────────────── -->
+    <section id="home" class="page active" aria-label="Home">
+
+      <div class="hero">
+        <div class="hero-bg" aria-hidden="true"></div>
+
+        <div class="hero-content">
+          <!-- Animated disc icon -->
+          <div class="hero-disc" aria-hidden="true">
+            <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="60" cy="60" r="56" stroke="#FF8000" stroke-width="3"   fill="none"/>
+              <circle cx="60" cy="60" r="34" stroke="#FF8000" stroke-width="2"   fill="none"/>
+              <circle cx="60" cy="60" r="12" fill="#FF8000"/>
+              <ellipse cx="60" cy="60" rx="56" ry="14" stroke="#FF8000" stroke-width="1.5" fill="none" opacity="0.4"/>
+            </svg>
+          </div>
+
+          <h1 class="hero-title">Easy4</h1>
+          <p class="hero-location">Järta Discgolfipark · Märjamaa</p>
+          <p class="hero-tagline">Disc Golf Club &nbsp;·&nbsp; Estonia</p>
+
+          <div class="hero-cta">
+            <button class="btn btn-primary" data-nav="events">View Events</button>
+            <button class="btn btn-ghost"   data-nav="leaderboards">Leaderboards</button>
+          </div>
+        </div>
+
+        <!-- Pine-tree silhouette -->
+        <div class="hero-forest" aria-hidden="true">
+          <svg viewBox="0 0 1440 180" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+            <!-- back layer — lighter, slightly transparent -->
+            <path fill="#0c1f0c" opacity="0.65"
+              d="M0,180 L0,138 L28,138 L44,108 L60,138 L88,138 L108,78  L128,138
+                 L158,138 L174,112 L190,138 L220,138 L240,60  L260,138
+                 L290,138 L305,120 L320,138 L350,138 L370,85  L390,138
+                 L420,138 L436,105 L452,138 L482,138 L502,66  L522,138
+                 L552,138 L568,115 L584,138 L614,138 L634,78  L654,138
+                 L684,138 L700,98  L716,138 L746,138 L766,58  L786,138
+                 L816,138 L832,110 L848,138 L878,138 L898,82  L918,138
+                 L948,138 L964,102 L980,138 L1010,138 L1030,63 L1050,138
+                 L1080,138 L1096,116 L1112,138 L1142,138 L1162,76 L1182,138
+                 L1212,138 L1228,100 L1244,138 L1274,138 L1294,70 L1314,138
+                 L1344,138 L1360,108 L1376,138 L1406,138 L1426,80 L1440,138
+                 L1440,180 Z"/>
+            <!-- front layer — dark, solid -->
+            <path fill="#0a1a0a"
+              d="M0,180 L0,145 L22,145 L40,95  L58,145 L82,145 L104,52 L126,145
+                 L150,145 L165,112 L180,145 L210,145 L232,38  L254,145
+                 L278,145 L293,118 L308,145 L338,145 L360,70  L382,145
+                 L406,145 L422,108 L438,145 L468,145 L490,42  L512,145
+                 L536,145 L551,122 L566,145 L596,145 L618,60  L640,145
+                 L664,145 L680,100 L696,145 L726,145 L748,46  L770,145
+                 L794,145 L810,116 L826,145 L856,145 L878,66  L900,145
+                 L924,145 L940,105 L956,145 L986,145 L1008,36 L1030,145
+                 L1054,145 L1070,120 L1086,145 L1116,145 L1138,72 L1160,145
+                 L1184,145 L1200,96  L1216,145 L1246,145 L1268,54 L1290,145
+                 L1314,145 L1330,112 L1346,145 L1376,145 L1398,62 L1418,145
+                 L1440,145 L1440,180 Z"/>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Welcome strip -->
+      <section class="welcome">
+        <div class="container">
+          <div class="welcome-inner">
+
+            <div class="welcome-text">
+              <h2>Welcome to <span class="accent">Easy4</span></h2>
+              <p>Easy4 Disc Golf Club calls Järta Discgolfipark in Märjamaa home — one of Estonia's finest disc golf experiences. Set amid the natural beauty of the Estonian countryside, our course challenges and rewards players of every skill level.</p>
+              <p>Whether you're a seasoned ace hunter or throwing a disc for the very first time, our community welcomes you. Come join us on the fairways.</p>
+            </div>
+
+            <div class="feature-list">
+
+              <div class="feature-card">
+                <span class="feature-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2C8.1 2 5 5.1 5 9c0 5.3 7 13 7 13s7-7.7 7-13c0-3.9-3.1-7-7-7z" stroke="#FF8000" stroke-width="2"/>
+                    <circle cx="12" cy="9" r="2.5" stroke="#FF8000" stroke-width="2"/>
+                  </svg>
+                </span>
+                <div>
+                  <h3>The Course</h3>
+                  <p>Järta Discgolfipark, Märjamaa — a scenic layout through authentic Estonian nature.</p>
+                </div>
+              </div>
+
+              <div class="feature-card">
+                <span class="feature-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2l2.9 6.3H22l-5.8 4.2 2.2 6.8L12 15.6l-6.4 3.7 2.2-6.8L2 8.3h7.1L12 2z" stroke="#FF8000" stroke-width="1.8" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+                <div>
+                  <h3>Compete</h3>
+                  <p>Season-long tournaments and casual events for all skill levels.</p>
+                </div>
+              </div>
+
+              <div class="feature-card">
+                <span class="feature-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="12" cy="7" r="4"  stroke="#FF8000" stroke-width="2"/>
+                    <path d="M5.5 21c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6" stroke="#FF8000" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </span>
+                <div>
+                  <h3>Community</h3>
+                  <p>A welcoming club for disc golfers of all levels across Lääne county.</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </section><!-- /home -->
+
+
+    <!-- ── EVENTS ────────────────────────────────────────── -->
+    <section id="events" class="page" aria-label="Events">
+
+      <div class="page-hero">
+        <div class="container">
+          <h1>Events</h1>
+          <p>Tournaments, casual rounds, and club gatherings — all in one place.</p>
+        </div>
+      </div>
+
+      <div class="container page-body">
+        <div class="embed-box embed-calendar">
+          <iframe
+            src="https://calendar.google.com/calendar/embed?src=c_f3d2623080b0ef7b825ba98532ae9e981600ae66429111ff5032f35dc539dec0%40group.calendar.google.com&ctz=Europe%2FTallinn"
+            style="border:0"
+            width="800"
+            height="600"
+            frameborder="0"
+            scrolling="no"
+            title="Easy4 Disc Golf Club — Events Calendar"
+            loading="lazy"
+          ></iframe>
+        </div>
+      </div>
+
+    </section><!-- /events -->
+
+
+    <!-- ── LEADERBOARDS ──────────────────────────────────── -->
+    <section id="leaderboards" class="page" aria-label="Leaderboards">
+
+      <div class="page-hero">
+        <div class="container">
+          <h1>Leaderboards</h1>
+          <p>Celebrating Easy4's finest achievements on the course.</p>
+        </div>
+      </div>
+
+      <div class="container page-body">
+        <div class="board-block">
+
+          <div class="board-heading">
+            <div class="board-heading-icon" aria-hidden="true">
+              <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="24" cy="24" r="21" stroke="#FF8000" stroke-width="2.5" fill="none"/>
+                <circle cx="24" cy="24" r="6"  fill="#FF8000"/>
+                <line x1="24" y1="3"  x2="24" y2="9"  stroke="#FF8000" stroke-width="2.5" stroke-linecap="round"/>
+                <line x1="24" y1="39" x2="24" y2="45" stroke="#FF8000" stroke-width="2.5" stroke-linecap="round"/>
+                <line x1="3"  y1="24" x2="9"  y2="24" stroke="#FF8000" stroke-width="2.5" stroke-linecap="round"/>
+                <line x1="39" y1="24" x2="45" y2="24" stroke="#FF8000" stroke-width="2.5" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div>
+              <h2>Hole in One Hall of Fame</h2>
+              <p>The elite list of Easy4 members who have achieved the perfect throw.</p>
+            </div>
+          </div>
+
+          <div class="embed-box embed-sheet">
+            <iframe
+              src="https://docs.google.com/spreadsheets/d/e/2PACX-1vS_UgYyB7GOqSGrdnxVMrc84Y-AbgRCXg3idSWHw8y86v3EJ07ISNh_vf8aomJTOSWT-hqs2FPCp8Xd/pubhtml?gid=0&single=true&widget=true&headers=false"
+              title="Hole in One Hall of Fame"
+              loading="lazy"
+            ></iframe>
+          </div>
+
+        </div>
+      </div>
+
+    </section><!-- /leaderboards -->
+
+
+    <!-- ── CONTACT ──────────────────────────────────────── -->
+    <section id="contact" class="page" aria-label="Contact">
+
+      <div class="page-hero">
+        <div class="container">
+          <h1>Contact</h1>
+          <p>Find us on the course or reach out online.</p>
+        </div>
+      </div>
+
+      <div class="container page-body">
+        <div class="contact-grid">
+
+          <div class="contact-card">
+            <div class="contact-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="2" y="4" width="20" height="16" rx="2" stroke="#FF8000" stroke-width="2"/>
+                <path d="M2 8l10 7 10-7" stroke="#FF8000" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3>Email</h3>
+            <p>Drop us a message and we'll get back to you.</p>
+            <!-- Update email address to the club's actual address -->
+            <a href="mailto:easy4discgolf@gmail.com" class="contact-btn">easy4discgolf@gmail.com</a>
+          </div>
+
+          <div class="contact-card">
+            <div class="contact-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2C8.1 2 5 5.1 5 9c0 5.3 7 13 7 13s7-7.7 7-13c0-3.9-3.1-7-7-7z" stroke="#FF8000" stroke-width="2"/>
+                <circle cx="12" cy="9" r="2.5" stroke="#FF8000" stroke-width="2"/>
+              </svg>
+            </div>
+            <h3>Järta Discgolfipark</h3>
+            <p>Our home course in Märjamaa, Estonia. Come play a round!</p>
+            <a href="https://maps.google.com/?q=J%C3%A4rta+Discgolfipark+M%C3%A4rjamaa+Estonia" target="_blank" rel="noopener noreferrer" class="contact-btn">Open in Google Maps</a>
+          </div>
+
+          <div class="contact-card">
+            <div class="contact-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="10" stroke="#FF8000" stroke-width="2"/>
+                <circle cx="12" cy="12" r="4"  stroke="#FF8000" stroke-width="2"/>
+                <path d="M12 2v6M12 16v6M2 12h6M16 12h6" stroke="#FF8000" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3>UDisc</h3>
+            <p>Rate the course, track scores, and navigate the holes on UDisc.</p>
+            <!-- Update to the exact UDisc course URL for Järta Discgolfipark -->
+            <a href="https://udisc.com/courses" target="_blank" rel="noopener noreferrer" class="contact-btn">View on UDisc</a>
+          </div>
+
+        </div>
+      </div>
+
+    </section><!-- /contact -->
+
+  </main>
+
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+
+        <div class="footer-brand">
+          <svg viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="26" height="26">
+            <circle cx="15" cy="15" r="13" stroke="#FF8000" stroke-width="2.5" fill="none"/>
+            <circle cx="15" cy="15" r="5"  fill="#FF8000"/>
+          </svg>
+          <div>
+            <span class="footer-name">Easy4</span>
+            <span class="footer-label">Disc Golf Club</span>
+          </div>
+        </div>
+
+        <p class="footer-course">Järta Discgolfipark, Märjamaa, Estonia</p>
+
+        <p class="footer-copy">&copy; <span id="year"></span> Easy4 Disc Golf Club</p>
+
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
