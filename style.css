@@ -5,9 +5,9 @@
 
 /* ── Variables ──────────────────────────────────────────── */
 :root {
-  --orange:      #FF8000;
-  --orange-lt:   #FF9933;
-  --orange-dim:  rgba(255, 128, 0, 0.13);
+  --orange:      #F7941E;
+  --orange-lt:   #F9A84A;
+  --orange-dim:  rgba(247, 148, 30, 0.13);
   --black:       #000000;
   --dark:        #0d0d0d;
   --dark-2:      #181818;
@@ -201,15 +201,18 @@ h1, h2, h3 {
   padding: 48px 24px 200px;
 }
 
-/* Spinning disc */
+/* Basket icon — gentle float animation (baskets don't spin) */
 .hero-disc {
-  width: clamp(60px, 11vw, 92px);
-  height: clamp(60px, 11vw, 92px);
+  width: clamp(52px, 9vw, 76px);
+  height: auto;
   margin: 0 auto 28px;
-  animation: disc-spin 28s linear infinite;
-  filter: drop-shadow(0 0 18px rgba(255,128,0,.38));
+  animation: basket-float 4s ease-in-out infinite;
+  filter: drop-shadow(0 0 20px rgba(247,148,30,.35));
 }
-@keyframes disc-spin { to { transform: rotate(360deg); } }
+@keyframes basket-float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-10px); }
+}
 
 .hero-title {
   font-family: 'Barlow Condensed', sans-serif;
@@ -464,10 +467,11 @@ h1, h2, h3 {
 .contact-grid {
   display: grid;
   gap: 20px;
-  max-width: 960px;
+  max-width: 1100px;
   margin: 0 auto;
+  /* auto-fill so 3, 4, or 5 cards reflow cleanly at any width */
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 }
-@media (min-width: 600px) { .contact-grid { grid-template-columns: repeat(3, 1fr); } }
 
 .contact-card {
   display: flex;
@@ -556,6 +560,40 @@ h1, h2, h3 {
 .footer-copy {
   font-size: .83rem;
   color: rgba(255,255,255,.38);
+}
+
+.footer-right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+@media (min-width: 680px) {
+  .footer-right { align-items: flex-end; }
+}
+
+.footer-social {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.footer-social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  color: rgba(255,255,255,.45);
+  border: 1px solid rgba(255,255,255,.15);
+  border-radius: 50%;
+  transition: color .18s, border-color .18s, background .18s;
+}
+.footer-social-link svg { width: 16px; height: 16px; }
+.footer-social-link:hover {
+  color: var(--orange);
+  border-color: var(--orange);
+  background: var(--orange-dim);
 }
 
 /* =========================================================
