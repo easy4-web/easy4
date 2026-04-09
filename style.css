@@ -399,6 +399,18 @@ h1, h2, h3 {
   padding-bottom: 72px;
 }
 
+/* Events page — same dark gradient as home hero */
+#events .page-hero {
+  background:
+    radial-gradient(ellipse 65% 38% at 50% 0%, rgba(255,128,0,.20) 0%, transparent 58%),
+    linear-gradient(180deg, #0d0d0d 0%, #111 42%, #0c1c0c 100%);
+  border-bottom-color: transparent;
+}
+#events .page-body {
+  background: linear-gradient(180deg, #0c1c0c 0%, #0d0d0d 40%);
+  min-height: calc(100svh - var(--nav-h) - 160px);
+}
+
 /* =========================================================
    EMBED BOXES  (responsive iframes — padding-bottom trick)
    ========================================================= */
