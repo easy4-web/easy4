@@ -80,20 +80,16 @@ h1, h2, h3 {
 .nav-logo {
   display: flex;
   align-items: center;
-  gap: 10px;
   text-decoration: none;
   flex-shrink: 0;
 }
-.nav-disc { width: 32px; height: 32px; }
-.nav-logo-text {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 1.65rem;
-  font-weight: 900;
-  letter-spacing: 0.03em;
-  color: var(--white);
-  transition: color .2s;
+.nav-logo-img {
+  height: 44px;
+  width: auto;
+  display: block;
+  transition: opacity .2s;
 }
-.nav-logo:hover .nav-logo-text { color: var(--orange); }
+.nav-logo:hover .nav-logo-img { opacity: .85; }
 
 /* Links */
 .nav-menu {
@@ -198,20 +194,21 @@ h1, h2, h3 {
   position: relative;
   z-index: 2;
   text-align: center;
-  padding: 48px 24px 200px;
+  padding: 32px 24px 200px;
 }
 
-/* Basket icon — gentle float animation (baskets don't spin) */
-.hero-disc {
-  width: clamp(52px, 9vw, 76px);
+/* Real logo image in hero — black basket merges with dark bg via lighten blend */
+.hero-logo {
+  width: clamp(200px, 46vw, 400px);
   height: auto;
-  margin: 0 auto 28px;
+  display: block;
+  margin: 0 auto 24px;
   animation: basket-float 4s ease-in-out infinite;
-  filter: drop-shadow(0 0 20px rgba(247,148,30,.35));
+  filter: drop-shadow(0 0 28px rgba(247,148,30,.25));
 }
 @keyframes basket-float {
   0%, 100% { transform: translateY(0); }
-  50%       { transform: translateY(-10px); }
+  50%       { transform: translateY(-12px); }
 }
 
 .hero-title {
@@ -540,21 +537,10 @@ h1, h2, h3 {
   align-items: center;
   gap: 10px;
 }
-.footer-name {
+.footer-logo-img {
+  height: 52px;
+  width: auto;
   display: block;
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 1.45rem;
-  font-weight: 900;
-  color: var(--white);
-  line-height: 1;
-}
-.footer-label {
-  display: block;
-  font-size: .68rem;
-  letter-spacing: .13em;
-  text-transform: uppercase;
-  color: var(--orange);
-  margin-top: 2px;
 }
 .footer-course,
 .footer-copy {
