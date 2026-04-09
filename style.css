@@ -423,17 +423,6 @@ h1, h2, h3 {
   display: block;
 }
 
-/* Calendar: native 800×600 → 75% ratio on mobile */
-.embed-calendar { padding-bottom: 75%; }
-
-/* On wider screens switch to a comfortable fixed height */
-@media (min-width: 760px) {
-  .embed-calendar {
-    padding-bottom: 0;
-    height: 600px;
-  }
-}
-
 /* Sheet: taller on mobile, fixed on desktop */
 .embed-sheet { padding-bottom: 80%; }
 @media (min-width: 760px) {
@@ -442,6 +431,211 @@ h1, h2, h3 {
     height: 560px;
   }
 }
+
+/* =========================================================
+   CUSTOM CALENDAR
+   ========================================================= */
+
+/* ── Tabs ── */
+.cal-tabs {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 28px;
+}
+.cal-tab {
+  padding: 9px 28px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  background: var(--dark-2);
+  color: rgba(255,255,255,.45);
+  border: 1px solid #2a2a2a;
+  border-radius: var(--r);
+  cursor: pointer;
+  transition: background .18s, color .18s, border-color .18s;
+}
+.cal-tab:hover   { color: var(--white); border-color: #444; }
+.cal-tab.active  { background: var(--orange); color: var(--black); border-color: var(--orange); }
+
+/* ── Loading / error ── */
+.cal-status {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 60px 0;
+  color: rgba(255,255,255,.35);
+  font-size: .95rem;
+}
+.cal-status.hidden { display: none; }
+
+.cal-spinner {
+  width: 36px; height: 36px;
+  border: 3px solid rgba(247,148,30,.2);
+  border-top-color: var(--orange);
+  border-radius: 50%;
+  animation: spin .8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── Views ── */
+.cal-view { display: block; }
+.cal-view[hidden] { display: none; }
+.cal-empty { color: rgba(0,0,0,.4); text-align: center; padding: 48px 0; font-size: 1rem; }
+
+/* ── Upcoming event list ── */
+.event-list {
+  list-style: none;
+  display: grid;
+  gap: 14px;
+  max-width: 860px;
+}
+.event-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  background: var(--dark-2);
+  border: 1px solid #242424;
+  border-left: 4px solid var(--orange);
+  border-radius: var(--r);
+  padding: 18px 22px;
+  transition: transform .18s, box-shadow .18s;
+}
+.event-item:hover { transform: translateX(4px); box-shadow: var(--shadow); }
+
+.event-date-badge {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 54px;
+  height: 54px;
+  background: var(--orange);
+  border-radius: var(--r);
+  color: var(--black);
+  line-height: 1.1;
+}
+.event-date-day   { font-family: 'Barlow Condensed', sans-serif; font-size: 1.6rem; font-weight: 900; }
+.event-date-month { font-family: 'Barlow Condensed', sans-serif; font-size: .7rem;  font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+
+.event-info { flex: 1; min-width: 0; }
+.event-name { font-family: 'Barlow Condensed', sans-serif; font-size: 1.2rem; font-weight: 700; color: var(--white); margin-bottom: 4px; }
+.event-time { font-size: .82rem; color: var(--orange); margin-bottom: 6px; letter-spacing: .04em; }
+.event-desc { font-size: .88rem; color: rgba(255,255,255,.45); line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+
+/* ── Month view ── */
+.month-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+  max-width: 700px;
+}
+.month-arrow {
+  background: var(--dark-2);
+  border: 1px solid #2a2a2a;
+  color: var(--white);
+  width: 38px; height: 38px;
+  border-radius: var(--r);
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background .15s, border-color .15s, color .15s;
+  display: flex; align-items: center; justify-content: center;
+}
+.month-arrow:hover { background: var(--orange); color: var(--black); border-color: var(--orange); }
+.month-label {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--white);
+  letter-spacing: .04em;
+}
+
+.month-grid-wrap { max-width: 700px; }
+
+.month-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+  margin-bottom: 4px;
+}
+.month-weekdays span {
+  text-align: center;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.3);
+  padding: 4px 0;
+}
+
+.month-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+.month-day {
+  aspect-ratio: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 8px;
+  border-radius: 4px;
+  background: var(--dark-2);
+  border: 1px solid #1e1e1e;
+  font-size: clamp(.7rem, 2vw, .9rem);
+  color: rgba(255,255,255,.55);
+  position: relative;
+  cursor: default;
+  transition: background .15s, color .15s;
+  user-select: none;
+}
+.month-day.empty   { background: transparent; border-color: transparent; }
+.month-day.today   { border-color: var(--orange); color: var(--white); }
+.month-day.has-event { cursor: pointer; color: var(--white); }
+.month-day.has-event:hover { background: #2a2a2a; }
+.month-day.selected { background: var(--orange); color: var(--black) !important; border-color: var(--orange); }
+
+/* Orange dot for days with events */
+.event-dot {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--orange);
+  margin-top: 4px;
+  flex-shrink: 0;
+}
+.month-day.selected .event-dot { background: var(--black); }
+
+/* Day detail panel */
+.month-detail {
+  margin-top: 20px;
+  max-width: 700px;
+  background: var(--dark-2);
+  border: 1px solid #2a2a2a;
+  border-left: 4px solid var(--orange);
+  border-radius: var(--r);
+  padding: 20px 24px;
+}
+.month-detail[hidden] { display: none; }
+.month-detail-date {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--orange);
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+}
+.month-detail-list { list-style: none; display: grid; gap: 10px; }
+.month-detail-list li { color: var(--white); }
+.month-detail-list .det-name { font-weight: 600; font-size: 1rem; }
+.month-detail-list .det-time { font-size: .82rem; color: var(--orange); }
+.month-detail-list .det-desc { font-size: .85rem; color: rgba(255,255,255,.45); margin-top: 3px; }
 
 /* =========================================================
    LEADERBOARD

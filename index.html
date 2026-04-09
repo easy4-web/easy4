@@ -162,18 +162,46 @@
       </div>
 
       <div class="container page-body">
-        <div class="embed-box embed-calendar">
-          <iframe
-            src="https://calendar.google.com/calendar/embed?src=c_f3d2623080b0ef7b825ba98532ae9e981600ae66429111ff5032f35dc539dec0%40group.calendar.google.com&ctz=Europe%2FTallinn"
-            style="border:0"
-            width="800"
-            height="600"
-            frameborder="0"
-            scrolling="no"
-            title="Easy4 Disc Golf Club — Events Calendar"
-            loading="lazy"
-          ></iframe>
+
+        <!-- View toggle -->
+        <div class="cal-tabs" role="tablist">
+          <button class="cal-tab active" id="tab-upcoming" role="tab" aria-selected="true"  aria-controls="view-upcoming" data-view="upcoming">Upcoming</button>
+          <button class="cal-tab"        id="tab-month"    role="tab" aria-selected="false" aria-controls="view-month"    data-view="month">Month</button>
         </div>
+
+        <!-- Loading / error states -->
+        <div class="cal-status" id="calStatus" aria-live="polite">
+          <div class="cal-spinner" aria-hidden="true"></div>
+          <p>Loading events…</p>
+        </div>
+
+        <!-- ── UPCOMING VIEW ── -->
+        <div class="cal-view" id="view-upcoming" role="tabpanel" aria-labelledby="tab-upcoming">
+          <ul class="event-list" id="eventList"></ul>
+          <p class="cal-empty" id="upcomingEmpty" hidden>No upcoming events scheduled. Check back soon!</p>
+        </div>
+
+        <!-- ── MONTH VIEW ── -->
+        <div class="cal-view" id="view-month" role="tabpanel" aria-labelledby="tab-month" hidden>
+          <div class="month-nav">
+            <button class="month-arrow" id="prevMonth" aria-label="Previous month">&#8592;</button>
+            <span class="month-label" id="monthLabel"></span>
+            <button class="month-arrow" id="nextMonth" aria-label="Next month">&#8594;</button>
+          </div>
+          <div class="month-grid-wrap">
+            <div class="month-weekdays">
+              <span>Mon</span><span>Tue</span><span>Wed</span>
+              <span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+            </div>
+            <div class="month-grid" id="monthGrid"></div>
+          </div>
+          <!-- Event detail popup on day click -->
+          <div class="month-detail" id="monthDetail" hidden>
+            <h3 class="month-detail-date" id="monthDetailDate"></h3>
+            <ul class="month-detail-list" id="monthDetailList"></ul>
+          </div>
+        </div>
+
       </div>
 
     </section><!-- /events -->
