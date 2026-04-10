@@ -399,18 +399,18 @@ h1, h2, h3 {
   padding-bottom: 72px;
 }
 
-/* Events page — same dark gradient as home hero */
-#events {
+/* Inner pages — same dark gradient as home hero */
+#events, #leaderboards, #contact {
   background:
     radial-gradient(ellipse 65% 38% at 50% 0%, rgba(255,128,0,.20) 0%, transparent 50%),
     linear-gradient(180deg, #0d0d0d 0%, #111 30%, #0c1c0c 60%, #0d0d0d 100%);
   min-height: calc(100svh - var(--nav-h));
 }
-#events .page-hero {
+#events .page-hero, #leaderboards .page-hero, #contact .page-hero {
   background: transparent;
   border-bottom-color: transparent;
 }
-#events .page-body {
+#events .page-body, #leaderboards .page-body, #contact .page-body {
   background: transparent;
 }
 
