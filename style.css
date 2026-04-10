@@ -809,6 +809,13 @@ h1, h2, h3 {
   word-break: break-all;
 }
 .contact-btn:hover { background: var(--orange); color: var(--black); }
+.contact-btn-ghost {
+  background: transparent;
+  color: var(--orange);
+  border: 2px solid rgba(247,148,30,.45);
+  margin-top: 8px;
+}
+.contact-btn-ghost:hover { background: var(--orange); color: var(--black); border-color: var(--orange); }
 
 /* =========================================================
    FOOTER
