@@ -165,6 +165,7 @@ function renderUpcoming() {
       <div class="event-info">
         <div class="event-name">${escHtml(ev.summary || 'Event')}</div>
         <div class="event-time">${formatTime(ev)}</div>
+        ${ev.location ? `<div class="event-location"><svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M8 1.5C5.5 1.5 3.5 3.5 3.5 6c0 3.5 4.5 8.5 4.5 8.5s4.5-5 4.5-8.5c0-2.5-2-4.5-4.5-4.5z" stroke="currentColor" stroke-width="1.4"/><circle cx="8" cy="6" r="1.5" stroke="currentColor" stroke-width="1.4"/></svg>${escHtml(ev.location)}</div>` : ''}
         ${ev.description ? `<div class="event-desc">${escHtml(ev.description)}</div>` : ''}
       </div>`;
     list.appendChild(li);
@@ -239,6 +240,7 @@ function showDayDetail(day, events, cell) {
     <li>
       <div class="det-name">${escHtml(ev.summary || 'Event')}</div>
       <div class="det-time">${formatTime(ev)}</div>
+      ${ev.location ? `<div class="det-location"><svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M8 1.5C5.5 1.5 3.5 3.5 3.5 6c0 3.5 4.5 8.5 4.5 8.5s4.5-5 4.5-8.5c0-2.5-2-4.5-4.5-4.5z" stroke="currentColor" stroke-width="1.4"/><circle cx="8" cy="6" r="1.5" stroke="currentColor" stroke-width="1.4"/></svg>${escHtml(ev.location)}</div>` : ''}
       ${ev.description ? `<div class="det-desc">${escHtml(ev.description)}</div>` : ''}
     </li>`).join('');
 

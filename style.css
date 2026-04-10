@@ -540,6 +540,8 @@ h1, h2, h3 {
 .event-name { font-family: 'Barlow Condensed', sans-serif; font-size: 1.2rem; font-weight: 700; color: var(--white); margin-bottom: 4px; }
 .event-time { font-size: .82rem; color: var(--orange); margin-bottom: 6px; letter-spacing: .04em; }
 .event-desc { font-size: .88rem; color: rgba(255,255,255,.45); line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.event-location { display: flex; align-items: center; gap: 5px; font-size: .82rem; color: rgba(255,255,255,.5); margin-bottom: 4px; }
+.event-location svg { width: 12px; height: 12px; flex-shrink: 0; color: var(--orange); }
 
 /* ── Month view ── */
 .month-nav {
@@ -650,6 +652,8 @@ h1, h2, h3 {
 .month-detail-list li { color: var(--white); }
 .month-detail-list .det-name { font-weight: 600; font-size: 1rem; }
 .month-detail-list .det-time { font-size: .82rem; color: var(--orange); }
+.month-detail-list .det-location { display: flex; align-items: center; gap: 5px; font-size: .82rem; color: rgba(255,255,255,.5); margin-top: 3px; }
+.month-detail-list .det-location svg { width: 12px; height: 12px; flex-shrink: 0; color: var(--orange); }
 .month-detail-list .det-desc { font-size: .85rem; color: rgba(255,255,255,.45); margin-top: 3px; }
 
 /* =========================================================
