@@ -278,3 +278,137 @@ function setupMonthNav() {
 function escHtml(str) {
   return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
+
+
+/* =========================================================
+   LEADERBOARDS
+   ========================================================= */
+
+/* Add a new entry here when a new competition sheet is ready:
+   { label: 'Display Name', subtitle: 'Short description', gid: 0 }
+   gid is the sheet tab ID — visible in the sheet URL as ?gid=XXXX            */
+const SHEETS = [
+  { label: 'Hole in One Hall of Fame', subtitle: 'Easy4 members who have hit the perfect throw.', gid: 0 }
+];
+
+let lbLoaded = false;
+let lbActive = 0; // index into SHEETS
+
+/* ── Init (lazy, called on first navigation to leaderboards) ── */
+function initLeaderboard() {
+  if (lbLoaded) return;
+  lbLoaded = true;
+
+  const tabBar = document.getElementById('lbTabs');
+
+  // Build tabs — only show bar when there are multiple sheets
+  if (SHEETS.length > 1) {
+    tabBar.hidden = false;
+    SHEETS.forEach((sheet, i) => {
+      const btn = document.createElement('button');
+      btn.className = 'lb-tab' + (i === 0 ? ' active' : '');
+      btn.textContent = sheet.label;
+      btn.setAttribute('role', 'tab');
+      btn.setAttribute('aria-selected', String(i === 0));
+      btn.addEventListener('click', () => switchSheet(i));
+      tabBar.appendChild(btn);
+    });
+  }
+
+  loadSheet(0);
+}
+
+function switchSheet(index) {
+  if (index === lbActive) return;
+  lbActive = index;
+
+  document.querySelectorAll('.lb-tab').forEach((btn, i) => {
+    btn.classList.toggle('active', i === index);
+    btn.setAttribute('aria-selected', String(i === index));
+  });
+
+  document.getElementById('lbTableWrap').innerHTML = '';
+  showLbStatus(true);
+  loadSheet(index);
+}
+
+async function loadSheet(index) {
+  const sheet = SHEETS[index];
+  const SHEET_ID = '1gjBN3d0JW-o37EIt953SOijzSQgUqSQlEKFryBGO7RA';
+
+  // Update heading
+  document.getElementById('lbTitle').textContent    = sheet.label;
+  document.getElementById('lbSubtitle').textContent = sheet.subtitle;
+
+  try {
+    const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&gid=${sheet.gid}`;
+    const res  = await fetch(url);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+
+    const text = await res.text();
+    // Strip the JS wrapper: /*O_o*/\ngoogle.visualization.Query.setResponse({...});
+    const match = text.match(/google\.visualization\.Query\.setResponse\(([\s\S]*)\)\s*;?\s*$/);
+    if (!match) throw new Error('Unexpected response format');
+    const data  = JSON.parse(match[1]);
+    const table = data.table;
+
+    // Column headers (use label, fall back to id)
+    const cols = table.cols.map(c => c.label || c.id);
+
+    // Rows — each cell has .v (value) and .f (formatted string)
+    const rows = (table.rows || []).map(r =>
+      r.c.map(cell => (cell ? (cell.f ?? (cell.v !== null ? String(cell.v) : '')) : ''))
+    );
+
+    renderTable(cols, rows);
+    showLbStatus(false);
+  } catch (err) {
+    showLbStatus(false);
+    document.getElementById('lbTableWrap').innerHTML =
+      `<p class="lb-error">Could not load leaderboard. Please try again later.</p>`;
+  }
+}
+
+function renderTable(cols, rows) {
+  const wrap = document.getElementById('lbTableWrap');
+
+  const table = document.createElement('table');
+  table.className = 'lb-table';
+
+  // Header
+  const thead = document.createElement('thead');
+  thead.innerHTML = '<tr>' + cols.map(c => `<th>${escHtml(String(c))}</th>`).join('') + '</tr>';
+  table.appendChild(thead);
+
+  // Body
+  const tbody = document.createElement('tbody');
+  rows.forEach(row => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = row.map(cell => `<td>${escHtml(String(cell))}</td>`).join('');
+    tbody.appendChild(tr);
+  });
+  table.appendChild(tbody);
+
+  wrap.appendChild(table);
+}
+
+function showLbStatus(visible) {
+  document.getElementById('lbStatus').hidden = !visible;
+}
+
+// Hook into navigation
+const _origNavigate = navigate;
+// Lazy-load leaderboard on first visit
+document.querySelectorAll('[data-nav]').forEach(el => {
+  el.addEventListener('click', () => {
+    if (el.dataset.nav === 'leaderboards') initLeaderboard();
+  });
+});
+window.addEventListener('popstate', e => {
+  if ((e.state?.page ?? window.location.hash.replace('#','')) === 'leaderboards') initLeaderboard();
+});
+// Also handle direct load via hash
+(function () {
+  const hash = window.location.hash.replace('#', '');
+  if (hash === 'leaderboards') setTimeout(initLeaderboard, 0);
+})();

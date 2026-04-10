@@ -667,6 +667,94 @@ h1, h2, h3 {
 .board-heading h2  { font-size: clamp(1.5rem, 3.8vw, 2rem); margin-bottom: 6px; color: var(--white); }
 .board-heading p   { color: rgba(255,255,255,.5); font-size: .95rem; }
 
+/* ── Leaderboard tabs ────────────────────────────────────── */
+.lb-tabs {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 28px;
+}
+.lb-tab {
+  padding: 8px 20px;
+  border-radius: 6px;
+  border: 2px solid rgba(247,148,30,.35);
+  background: transparent;
+  color: rgba(255,255,255,.55);
+  font-size: .9rem;
+  font-weight: 600;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  transition: border-color .18s, color .18s, background .18s;
+}
+.lb-tab:hover  { border-color: var(--orange); color: var(--white); }
+.lb-tab.active { background: var(--orange); border-color: var(--orange); color: #000; }
+
+/* ── Status / spinner ────────────────────────────────────── */
+.lb-status {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  padding: 48px 0;
+  color: rgba(255,255,255,.4);
+}
+.lb-status[hidden] { display: none; }
+.lb-spinner {
+  width: 36px;
+  height: 36px;
+  border: 3px solid rgba(247,148,30,.2);
+  border-top-color: var(--orange);
+  border-radius: 50%;
+  animation: spin .8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── Table ───────────────────────────────────────────────── */
+.lb-table-wrap {
+  overflow-x: auto;
+  border-radius: 10px;
+  border: 1px solid rgba(247,148,30,.2);
+}
+.lb-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .95rem;
+  min-width: 480px;
+}
+.lb-table thead tr {
+  background: var(--orange);
+}
+.lb-table thead th {
+  padding: 12px 16px;
+  text-align: left;
+  color: #000;
+  font-weight: 700;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1rem;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.lb-table tbody tr {
+  border-bottom: 1px solid rgba(255,255,255,.06);
+  transition: background .15s;
+}
+.lb-table tbody tr:nth-child(even) { background: rgba(255,255,255,.03); }
+.lb-table tbody tr:hover            { background: rgba(247,148,30,.08); }
+.lb-table tbody td {
+  padding: 11px 16px;
+  color: rgba(255,255,255,.85);
+  white-space: nowrap;
+}
+.lb-table tbody td:first-child { color: var(--white); font-weight: 600; }
+
+.lb-error {
+  text-align: center;
+  padding: 40px;
+  color: rgba(255,255,255,.4);
+  font-size: .95rem;
+}
+
 /* =========================================================
    CONTACT
    ========================================================= */

@@ -220,7 +220,11 @@
       <div class="container page-body">
         <div class="board-block">
 
-          <div class="board-heading">
+          <!-- Tab bar — hidden when only one sheet, shown when multiple -->
+          <div class="lb-tabs" id="lbTabs" role="tablist" hidden></div>
+
+          <!-- Active sheet heading — filled by JS -->
+          <div class="board-heading" id="lbHeading">
             <div class="board-heading-icon" aria-hidden="true">
               <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
                 <circle cx="24" cy="24" r="21" stroke="#F7941E" stroke-width="2.5" fill="none"/>
@@ -232,18 +236,19 @@
               </svg>
             </div>
             <div>
-              <h2>Hole in One Hall of Fame</h2>
-              <p>The elite list of Easy4 members who have achieved the perfect throw.</p>
+              <h2 id="lbTitle"></h2>
+              <p id="lbSubtitle"></p>
             </div>
           </div>
 
-          <div class="embed-box embed-sheet">
-            <iframe
-              src="https://docs.google.com/spreadsheets/d/e/2PACX-1vS_UgYyB7GOqSGrdnxVMrc84Y-AbgRCXg3idSWHw8y86v3EJ07ISNh_vf8aomJTOSWT-hqs2FPCp8Xd/pubhtml?gid=0&single=true&widget=true&headers=false"
-              title="Hole in One Hall of Fame"
-              loading="lazy"
-            ></iframe>
+          <!-- Status / spinner -->
+          <div class="lb-status" id="lbStatus">
+            <div class="lb-spinner"></div>
+            <p>Loading leaderboard…</p>
           </div>
+
+          <!-- Table rendered by JS -->
+          <div class="lb-table-wrap" id="lbTableWrap"></div>
 
         </div>
       </div>
