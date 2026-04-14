@@ -752,6 +752,55 @@ h1, h2, h3 {
 }
 .lb-table tbody td:first-child { color: var(--white); font-weight: 600; }
 
+/* ── Leader card ─────────────────────────────────────────── */
+.lb-leader-card {
+  margin-bottom: 28px;
+  border-radius: 12px;
+  border: 1.5px solid var(--orange);
+  background: linear-gradient(135deg, rgba(247,148,30,.12) 0%, rgba(247,148,30,.04) 100%);
+  padding: 24px 28px;
+}
+.lb-leader-card[hidden] { display: none; }
+.lb-leader-inner {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.lb-leader-icon svg {
+  width: 52px;
+  height: 52px;
+  flex-shrink: 0;
+}
+.lb-leader-label {
+  font-size: .78rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 4px;
+}
+.lb-leader-name {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: clamp(1.5rem, 4vw, 2.2rem);
+  font-weight: 800;
+  color: var(--white);
+  line-height: 1.1;
+  margin-bottom: 4px;
+}
+.lb-leader-total {
+  font-size: .9rem;
+  color: rgba(255,255,255,.5);
+}
+
+/* ── Leader row highlight ────────────────────────────────── */
+.lb-table tbody tr.lb-row-leader {
+  background: rgba(247,148,30,.08);
+  border-left: 3px solid var(--orange);
+}
+.lb-table tbody tr.lb-row-leader:hover {
+  background: rgba(247,148,30,.14);
+}
+
 .lb-error {
   text-align: center;
   padding: 40px;

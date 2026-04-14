@@ -381,7 +381,25 @@ async function loadSheet(index) {
       rows = rows.map(row => [...row.slice(0, nodiIdx), ...row.slice(nodiIdx + 1), row[nodiIdx]]);
     }
 
-    renderTable(cols, rows);
+    // Calculate leader(s) — sum MEETRIT per NIMI
+    const nimiIdx   = cols.findIndex(c => c.trim().toUpperCase() === 'NIMI');
+    const meetritIdx = cols.findIndex(c => c.trim().toUpperCase() === 'MEETRIT');
+    let leaders = [];
+    if (nimiIdx !== -1 && meetritIdx !== -1) {
+      const totals = {};
+      rows.forEach(row => {
+        const name  = (row[nimiIdx] || '').trim();
+        const dist  = parseFloat((row[meetritIdx] || '0').toString().replace(',', '.')) || 0;
+        if (name) totals[name] = (totals[name] || 0) + dist;
+      });
+      const maxTotal = Math.max(...Object.values(totals));
+      leaders = Object.entries(totals)
+        .filter(([, total]) => total === maxTotal)
+        .map(([name, total]) => ({ name, total }));
+    }
+
+    renderLeaderCard(leaders);
+    renderTable(cols, rows, leaders.map(l => l.name));
     showLbStatus(false);
   } catch (err) {
     showLbStatus(false);
@@ -390,8 +408,39 @@ async function loadSheet(index) {
   }
 }
 
-function renderTable(cols, rows) {
+function renderLeaderCard(leaders) {
+  const card = document.getElementById('lbLeaderCard');
+  if (!leaders.length) { card.hidden = true; return; }
+
+  const isTie = leaders.length > 1;
+  const total = leaders[0].total;
+  const names = leaders.map(l => escHtml(l.name)).join(' &amp; ');
+
+  card.innerHTML = `
+    <div class="lb-leader-inner">
+      <div class="lb-leader-icon" aria-hidden="true">
+        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M10 14l6 10 8-16 8 16 6-10v12c0 2-1.5 4-4 4H14c-2.5 0-4-2-4-4V14z" fill="#F7941E" opacity=".15" stroke="#F7941E" stroke-width="2" stroke-linejoin="round"/>
+          <path d="M16 40h16M24 30v10" stroke="#F7941E" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="10" cy="13" r="3" fill="#F7941E"/>
+          <circle cx="38" cy="13" r="3" fill="#F7941E"/>
+          <circle cx="24" cy="8"  r="3" fill="#F7941E"/>
+        </svg>
+      </div>
+      <div class="lb-leader-info">
+        <p class="lb-leader-label">${isTie ? 'Current Leaders' : 'Current Leader'}</p>
+        <p class="lb-leader-name">${names}</p>
+        <p class="lb-leader-total">${total} m total</p>
+      </div>
+    </div>`;
+  card.hidden = false;
+}
+
+function renderTable(cols, rows, leaderNames = []) {
   const wrap = document.getElementById('lbTableWrap');
+  const leaderSet = new Set(leaderNames.map(n => n.trim().toLowerCase()));
+
+  const nimiIdx = cols.findIndex(c => c.trim().toUpperCase() === 'NIMI');
 
   const table = document.createElement('table');
   table.className = 'lb-table';
@@ -405,6 +454,8 @@ function renderTable(cols, rows) {
   const tbody = document.createElement('tbody');
   rows.forEach(row => {
     const tr = document.createElement('tr');
+    const name = nimiIdx !== -1 ? (row[nimiIdx] || '').trim().toLowerCase() : '';
+    if (leaderSet.has(name)) tr.classList.add('lb-row-leader');
     tr.innerHTML = row.map(cell => `<td>${escHtml(String(cell))}</td>`).join('');
     tbody.appendChild(tr);
   });
