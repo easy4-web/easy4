@@ -287,10 +287,10 @@ function escHtml(str) {
    ========================================================= */
 
 /* Add a new entry here when a new competition sheet is ready:
-   { label: 'Display Name', subtitle: 'Short description', gid: 0 }
-   gid is the sheet tab ID — visible in the sheet URL as ?gid=XXXX            */
+   { label: 'Display Name', subtitle: 'Short description', tab: 'ExactTabName' }
+   tab is the sheet tab name exactly as it appears at the bottom of the spreadsheet */
 const SHEETS = [
-  { label: 'Hole in One Hall of Fame', subtitle: 'Easy4 members who have hit the perfect throw.', gid: 0 }
+  { label: 'Holariäss 2026', subtitle: 'Easy4 members who have hit the perfect throw.', tab: 'HOLARIÄSS2026' }
 ];
 
 let lbLoaded = false;
@@ -336,14 +336,14 @@ function switchSheet(index) {
 
 async function loadSheet(index) {
   const sheet = SHEETS[index];
-  const SHEET_ID = '1gjBN3d0JW-o37EIt953SOijzSQgUqSQlEKFryBGO7RA';
+  const SHEET_ID = '11Mxat9KsjcNWBkfUEDaqzyay8zE6v1Wo';
 
   // Update heading
   document.getElementById('lbTitle').textContent    = sheet.label;
   document.getElementById('lbSubtitle').textContent = sheet.subtitle;
 
   try {
-    const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&gid=${sheet.gid}`;
+    const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=${encodeURIComponent(sheet.tab)}`;
     const res  = await fetch(url);
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
 
