@@ -127,7 +127,7 @@ var TRANSLATIONS = {
     /* ── Welcome ─────────────────────────────────────────── */
     'welcome.title':    'Tere tulemast <span class="accent">Easy4</span>-sse',
     'welcome.p1':       'Easy4 Discgolfi Klubi on leidnud kodu Järta Discgolfipargis Märjamaal — ühe Eesti parima discgolfikogemuse juures. Autentse Eesti looduse keskel paiknev rada pakub väljakutseid ja rahulolu igale tasemele.',
-    'welcome.p2':       'Olgu sa kogenud ässajahimees või hoiad diskit esimest korda käes — meie kogukond võtab sind soojalt vastu. Tule liitu meiega fairway\'del!',
+    'welcome.p2':       'Olgu sa kogenud holariäss või hoiad disci esimest korda käes — meie kogukond võtab sind soojalt vastu. Tule liitu meiega fairway\'del!',
 
     /* ── Feature cards ───────────────────────────────────── */
     'feature.course.title': 'Rada',
@@ -135,7 +135,7 @@ var TRANSLATIONS = {
     'feature.compete.title': 'Võistle',
     'feature.compete.desc':  'Hooajapikkused turniirid ja vabaajamängud kõikidele tasemetele.',
     'feature.community.title': 'Kogukond',
-    'feature.community.desc':  'Soe klubi discgolfaritele igalt tasemelt.',
+    'feature.community.desc':  'Soe klubi discgolfaritele igal tasemel.',
 
     /* ── Events page ─────────────────────────────────────── */
     'events.title':        'Üritused',
