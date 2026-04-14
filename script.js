@@ -354,13 +354,32 @@ async function loadSheet(index) {
     const data  = JSON.parse(match[1]);
     const table = data.table;
 
-    // Column headers (use label, fall back to id)
-    const cols = table.cols.map(c => c.label || c.id);
+    // Column headers — only A–H (first 8)
+    const allCols = table.cols.slice(0, 8).map(c => c.label || c.id);
 
-    // Rows — each cell has .v (value) and .f (formatted string)
-    const rows = (table.rows || []).map(r =>
-      r.c.map(cell => (cell ? (cell.f ?? (cell.v !== null ? String(cell.v) : '')) : ''))
+    // Rows — each cell has .v (value) and .f (formatted string), capped at 8 cols
+    const allRows = (table.rows || []).map(r =>
+      r.c.slice(0, 8).map(cell => (cell ? (cell.f ?? (cell.v !== null ? String(cell.v) : '')) : ''))
     );
+
+    // Drop columns that have no header AND no data in any row
+    const keepIdx = allCols
+      .map((col, i) => ({ col, i }))
+      .filter(({ col, i }) => {
+        if (col.trim()) return true; // has a header — keep
+        return allRows.some(row => (row[i] ?? '').toString().trim()); // has any data — keep
+      })
+      .map(({ i }) => i);
+
+    let cols = keepIdx.map(i => allCols[i]);
+    let rows = allRows.map(row => keepIdx.map(i => row[i] ?? ''));
+
+    // Move "Nodi" column to the end if present
+    const nodiIdx = cols.findIndex(c => c.trim().toLowerCase() === 'nodi');
+    if (nodiIdx !== -1 && nodiIdx !== cols.length - 1) {
+      cols = [...cols.slice(0, nodiIdx), ...cols.slice(nodiIdx + 1), cols[nodiIdx]];
+      rows = rows.map(row => [...row.slice(0, nodiIdx), ...row.slice(nodiIdx + 1), row[nodiIdx]]);
+    }
 
     renderTable(cols, rows);
     showLbStatus(false);
