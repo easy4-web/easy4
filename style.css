@@ -400,17 +400,17 @@ h1, h2, h3 {
 }
 
 /* Inner pages — same dark gradient as home hero */
-#events, #leaderboards, #contact {
+#events, #leaderboards, #contact, #sponsors {
   background:
     radial-gradient(ellipse 65% 38% at 50% 0%, rgba(255,128,0,.20) 0%, transparent 50%),
     linear-gradient(180deg, #0d0d0d 0%, #111 30%, #0c1c0c 60%, #0d0d0d 100%);
   min-height: calc(100svh - var(--nav-h));
 }
-#events .page-hero, #leaderboards .page-hero, #contact .page-hero {
+#events .page-hero, #leaderboards .page-hero, #contact .page-hero, #sponsors .page-hero {
   background: transparent;
   border-bottom-color: transparent;
 }
-#events .page-body, #leaderboards .page-body, #contact .page-body {
+#events .page-body, #leaderboards .page-body, #contact .page-body, #sponsors .page-body {
   background: transparent;
 }
 
@@ -952,6 +952,191 @@ h1, h2, h3 {
   color: var(--orange);
   border-color: var(--orange);
   background: var(--orange-dim);
+}
+
+/* =========================================================
+   SPONSORS PAGE
+   ========================================================= */
+
+.sp-block { margin-bottom: 64px; }
+
+.sp-block-title {
+  font-size: clamp(1.4rem, 3.5vw, 2rem);
+  color: var(--white);
+}
+.sp-block-title::after {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 4px;
+  background: var(--orange);
+  border-radius: 2px;
+  margin-top: 10px;
+  margin-bottom: 14px;
+}
+.sp-block-sub {
+  color: rgba(255,255,255,.5);
+  font-size: .95rem;
+  margin-bottom: 28px;
+}
+
+/* ── Name sponsor grid ── */
+.sp-name-grid {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.sp-name-card {
+  flex: 1;
+  min-width: 220px;
+  max-width: 420px;
+  background: var(--bg);
+  border-radius: 12px;
+  border-top: 4px solid var(--orange);
+  padding: 36px 40px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  box-shadow: 0 6px 28px rgba(0,0,0,.35);
+  transition: transform .18s, box-shadow .18s;
+}
+.sp-name-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 44px rgba(0,0,0,.45);
+}
+.sp-name-logo-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 90px;
+}
+.sp-name-logo {
+  max-width: 260px;
+  max-height: 90px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+.sp-name-label {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* ── Tee sponsor grid ── */
+.sp-tee-grid {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+}
+
+.sp-tee-card {
+  background: var(--bg);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: transform .18s, box-shadow .18s;
+  display: flex;
+  flex-direction: column;
+}
+.sp-tee-card:not(.sp-free):hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+}
+
+.sp-tee-top {
+  background: var(--orange);
+  padding: 6px 12px;
+}
+.sp-tee-num {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: .78rem;
+  font-weight: 800;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--black);
+}
+
+.sp-tee-body {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 22px 16px;
+  min-height: 100px;
+}
+.sp-tee-logo {
+  max-width: 130px;
+  max-height: 70px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+.sp-tee-label {
+  padding: 8px 12px 12px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: .88rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-align: center;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border);
+}
+
+/* ── Free / available tee ── */
+.sp-tee-card.sp-free {
+  background: rgba(255,255,255,.04);
+  border: 1.5px dashed rgba(247,148,30,.3);
+  box-shadow: none;
+}
+.sp-tee-card.sp-free:hover {
+  border-color: rgba(247,148,30,.55);
+  transform: translateY(-2px);
+}
+.sp-tee-card.sp-free .sp-tee-top {
+  background: rgba(247,148,30,.15);
+}
+.sp-tee-card.sp-free .sp-tee-num { color: var(--orange); }
+.sp-tee-card.sp-free .sp-tee-body {
+  flex-direction: column;
+  gap: 10px;
+}
+.sp-free-disc {
+  width: 36px;
+  height: 36px;
+  color: rgba(247,148,30,.35);
+}
+.sp-free-text {
+  font-size: .78rem;
+  color: rgba(255,255,255,.3);
+  font-style: italic;
+  text-align: center;
+}
+.sp-free-cta {
+  display: block;
+  width: 100%;
+  text-align: center;
+  padding: 8px 12px 10px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: .82rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--orange);
+  background: transparent;
+  border: none;
+  border-top: 1px solid rgba(247,148,30,.15);
+  cursor: pointer;
+  transition: color .15s, background .15s;
+}
+.sp-free-cta:hover {
+  color: var(--black);
+  background: var(--orange);
 }
 
 /* =========================================================

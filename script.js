@@ -10,7 +10,7 @@ const API_KEY = 'AIzaSyDXfsxcLQ7raquqvUxWvdjBTq8uDyrFsmo';
 const TZ      = 'Europe/Tallinn';
 
 /* ── Page navigation ─────────────────────────────────────── */
-const VALID_PAGES = new Set(['home', 'events', 'leaderboards', 'contact']);
+const VALID_PAGES = new Set(['home', 'events', 'leaderboards', 'sponsors', 'contact']);
 const navToggle   = document.getElementById('navToggle');
 const navMenu     = document.getElementById('navMenu');
 
