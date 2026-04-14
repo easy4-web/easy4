@@ -25,13 +25,20 @@
         <span></span><span></span><span></span>
       </button>
 
-      <ul class="nav-menu" id="navMenu">
-        <li><a class="nav-link active" href="#home"         data-nav="home"         aria-current="page">Home</a></li>
-        <li><a class="nav-link"        href="#events"       data-nav="events">Events</a></li>
-        <li><a class="nav-link"        href="#leaderboards" data-nav="leaderboards">Leaderboards</a></li>
-        <li><a class="nav-link"        href="#sponsors"     data-nav="sponsors">Sponsors</a></li>
-        <li><a class="nav-link"        href="#contact"      data-nav="contact">Contact</a></li>
-      </ul>
+      <div class="nav-right">
+        <ul class="nav-menu" id="navMenu">
+          <li><a class="nav-link active" href="#home"         data-nav="home"         aria-current="page" data-i18n="nav.home">Home</a></li>
+          <li><a class="nav-link"        href="#events"       data-nav="events"       data-i18n="nav.events">Events</a></li>
+          <li><a class="nav-link"        href="#leaderboards" data-nav="leaderboards" data-i18n="nav.leaderboards">Leaderboards</a></li>
+          <li><a class="nav-link"        href="#sponsors"     data-nav="sponsors"     data-i18n="nav.sponsors">Sponsors</a></li>
+          <li><a class="nav-link"        href="#contact"      data-nav="contact"      data-i18n="nav.contact">Contact</a></li>
+        </ul>
+        <div class="lang-switch" id="langSwitch">
+          <button class="lang-btn active" data-lang="en">EN</button>
+          <span class="lang-sep" aria-hidden="true">|</span>
+          <button class="lang-btn" data-lang="et">ET</button>
+        </div>
+      </div>
 
     </div>
   </nav>
@@ -50,11 +57,11 @@
           <h1 class="sr-only">Easy4 Disc Golf Club</h1>
           <img class="hero-logo" src="images/EASY4_Valge.png" alt="Easy4 Disc Golf Club">
           <p class="hero-location">Järta Discgolfpark · Märjamaa Discgolfpark</p>
-          <p class="hero-tagline">Disc Golf Club &nbsp;·&nbsp; Estonia</p>
+          <p class="hero-tagline" data-i18n-html="hero.tagline">Disc Golf Club &nbsp;·&nbsp; Estonia</p>
 
           <div class="hero-cta">
-            <button class="btn btn-primary" data-nav="events">View Events</button>
-            <button class="btn btn-ghost"   data-nav="leaderboards">Leaderboards</button>
+            <button class="btn btn-primary" data-nav="events"       data-i18n="hero.cta.events">View Events</button>
+            <button class="btn btn-ghost"   data-nav="leaderboards" data-i18n="hero.cta.lb">Leaderboards</button>
           </div>
         </div>
 
@@ -99,9 +106,9 @@
           <div class="welcome-inner">
 
             <div class="welcome-text">
-              <h2>Welcome to <span class="accent">Easy4</span></h2>
-              <p>Easy4 Disc Golf Club calls Järta Discgolfipark in Märjamaa home — one of Estonia's finest disc golf experiences. Set amid the natural beauty of the Estonian countryside, our course challenges and rewards players of every skill level.</p>
-              <p>Whether you're a seasoned ace hunter or throwing a disc for the very first time, our community welcomes you. Come join us on the fairways.</p>
+              <h2 data-i18n-html="welcome.title">Welcome to <span class="accent">Easy4</span></h2>
+              <p data-i18n="welcome.p1">Easy4 Disc Golf Club calls Järta Discgolfipark in Märjamaa home — one of Estonia's finest disc golf experiences. Set amid the natural beauty of the Estonian countryside, our course challenges and rewards players of every skill level.</p>
+              <p data-i18n="welcome.p2">Whether you're a seasoned ace hunter or throwing a disc for the very first time, our community welcomes you. Come join us on the fairways.</p>
             </div>
 
             <div class="feature-list">
@@ -114,8 +121,8 @@
                   </svg>
                 </span>
                 <div>
-                  <h3>The Course</h3>
-                  <p>Järta Discgolfipark, Märjamaa — a scenic layout through authentic Estonian nature.</p>
+                  <h3 data-i18n="feature.course.title">The Course</h3>
+                  <p data-i18n="feature.course.desc">Järta Discgolfipark, Märjamaa — a scenic layout through authentic Estonian nature.</p>
                 </div>
               </div>
 
@@ -126,8 +133,8 @@
                   </svg>
                 </span>
                 <div>
-                  <h3>Compete</h3>
-                  <p>Season-long tournaments and casual events for all skill levels.</p>
+                  <h3 data-i18n="feature.compete.title">Compete</h3>
+                  <p data-i18n="feature.compete.desc">Season-long tournaments and casual events for all skill levels.</p>
                 </div>
               </div>
 
@@ -139,8 +146,8 @@
                   </svg>
                 </span>
                 <div>
-                  <h3>Community</h3>
-                  <p>A welcoming club for disc golfers of all levels.</p>
+                  <h3 data-i18n="feature.community.title">Community</h3>
+                  <p data-i18n="feature.community.desc">A welcoming club for disc golfers of all levels.</p>
                 </div>
               </div>
 
@@ -157,8 +164,8 @@
 
       <div class="page-hero">
         <div class="container">
-          <h1>Events</h1>
-          <p>Tournaments, casual rounds, and club gatherings — all in one place.</p>
+          <h1 data-i18n="events.title">Events</h1>
+          <p data-i18n="events.subtitle">Tournaments, casual rounds, and club gatherings — all in one place.</p>
         </div>
       </div>
 
@@ -166,20 +173,20 @@
 
         <!-- View toggle -->
         <div class="cal-tabs" role="tablist">
-          <button class="cal-tab active" id="tab-upcoming" role="tab" aria-selected="true"  aria-controls="view-upcoming" data-view="upcoming">Upcoming</button>
-          <button class="cal-tab"        id="tab-month"    role="tab" aria-selected="false" aria-controls="view-month"    data-view="month">Month</button>
+          <button class="cal-tab active" id="tab-upcoming" role="tab" aria-selected="true"  aria-controls="view-upcoming" data-view="upcoming" data-i18n="events.tab.upcoming">Upcoming</button>
+          <button class="cal-tab"        id="tab-month"    role="tab" aria-selected="false" aria-controls="view-month"    data-view="month"    data-i18n="events.tab.month">Month</button>
         </div>
 
         <!-- Loading / error states -->
         <div class="cal-status" id="calStatus" aria-live="polite">
           <div class="cal-spinner" aria-hidden="true"></div>
-          <p>Loading events…</p>
+          <p data-i18n="events.loading">Loading events…</p>
         </div>
 
         <!-- ── UPCOMING VIEW ── -->
         <div class="cal-view" id="view-upcoming" role="tabpanel" aria-labelledby="tab-upcoming">
           <ul class="event-list" id="eventList"></ul>
-          <p class="cal-empty" id="upcomingEmpty" hidden>No upcoming events scheduled. Check back soon!</p>
+          <p class="cal-empty" id="upcomingEmpty" hidden data-i18n="events.empty">No upcoming events scheduled. Check back soon!</p>
         </div>
 
         <!-- ── MONTH VIEW ── -->
@@ -190,9 +197,9 @@
             <button class="month-arrow" id="nextMonth" aria-label="Next month">&#8594;</button>
           </div>
           <div class="month-grid-wrap">
-            <div class="month-weekdays">
-              <span>Mon</span><span>Tue</span><span>Wed</span>
-              <span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+            <div class="month-weekdays" id="monthWeekdays">
+              <span data-i18n-wd="0">Mon</span><span data-i18n-wd="1">Tue</span><span data-i18n-wd="2">Wed</span>
+              <span data-i18n-wd="3">Thu</span><span data-i18n-wd="4">Fri</span><span data-i18n-wd="5">Sat</span><span data-i18n-wd="6">Sun</span>
             </div>
             <div class="month-grid" id="monthGrid"></div>
           </div>
@@ -213,8 +220,8 @@
 
       <div class="page-hero">
         <div class="container">
-          <h1>Leaderboards</h1>
-          <p>Celebrating Easy4's finest achievements on the course.</p>
+          <h1 data-i18n="lb.title">Leaderboards</h1>
+          <p data-i18n="lb.subtitle">Celebrating Easy4's finest achievements on the course.</p>
         </div>
       </div>
 
@@ -245,7 +252,7 @@
           <!-- Status / spinner -->
           <div class="lb-status" id="lbStatus">
             <div class="lb-spinner"></div>
-            <p>Loading leaderboard…</p>
+            <p data-i18n="lb.loading">Loading leaderboard…</p>
           </div>
 
           <!-- Leader card — rendered by JS, hidden until data loads -->
@@ -265,8 +272,8 @@
 
       <div class="page-hero">
         <div class="container">
-          <h1>Sponsors</h1>
-          <p>The companies supporting Easy4 Disc Golf Club and Järta Discgolfpark.</p>
+          <h1 data-i18n="sponsors.title">Sponsors</h1>
+          <p data-i18n="sponsors.subtitle">The companies supporting Easy4 Disc Golf Club and Järta Discgolfpark.</p>
         </div>
       </div>
 
@@ -274,8 +281,8 @@
 
         <!-- Name Sponsors -->
         <div class="sp-block">
-          <h2 class="sp-block-title">Tournament Name Sponsors</h2>
-          <p class="sp-block-sub">Atea and Tesron proudly sponsor the Easy4 weekly tournament series.</p>
+          <h2 class="sp-block-title" data-i18n="sponsors.name.title">Tournament Name Sponsors</h2>
+          <p class="sp-block-sub" data-i18n="sponsors.name.sub">Atea and Tesron proudly sponsor the Easy4 weekly tournament series.</p>
           <div class="sp-name-grid">
 
             <div class="sp-name-card">
@@ -284,8 +291,8 @@
               </div>
               <p class="sp-name-label">Atea AS</p>
               <div class="sp-name-hover">
-                <p class="sp-hover-desc">Leading IT infrastructure and services provider across the Nordics and Baltics.</p>
-                <a href="https://www.atea.ee" target="_blank" rel="noopener noreferrer" class="sp-hover-link">Visit website →</a>
+                <p class="sp-hover-desc" data-i18n="sp.atea.desc">Leading IT infrastructure and services provider across the Nordics and Baltics.</p>
+                <a href="https://www.atea.ee" target="_blank" rel="noopener noreferrer" class="sp-hover-link" data-i18n="sponsors.visit.website">Visit website →</a>
               </div>
             </div>
 
@@ -295,8 +302,8 @@
               </div>
               <p class="sp-name-label">Tesron</p>
               <div class="sp-name-hover">
-                <p class="sp-hover-desc">Estonian engineering and technical solutions for industrial and construction projects.</p>
-                <a href="https://www.tesron.ee/" target="_blank" rel="noopener noreferrer" class="sp-hover-link">Visit website →</a>
+                <p class="sp-hover-desc" data-i18n="sp.tesron.desc">Estonian engineering and technical solutions for industrial and construction projects.</p>
+                <a href="https://www.tesron.ee/" target="_blank" rel="noopener noreferrer" class="sp-hover-link" data-i18n="sponsors.visit.website">Visit website →</a>
               </div>
             </div>
 
@@ -305,8 +312,8 @@
 
         <!-- Tee Sponsors -->
         <div class="sp-block">
-          <h2 class="sp-block-title">Tee Sponsors</h2>
-          <p class="sp-block-sub">Each sponsor supports a dedicated tee on the Järta Discgolfpark course.</p>
+          <h2 class="sp-block-title" data-i18n="sponsors.tee.title">Tee Sponsors</h2>
+          <p class="sp-block-sub" data-i18n="sponsors.tee.sub">Each sponsor supports a dedicated tee on the Järta Discgolfpark course.</p>
           <div class="sp-tee-grid">
 
             <div class="sp-tee-card">
@@ -314,8 +321,8 @@
               <div class="sp-tee-body"><img src="images/sponsors/EventTents%20logo-1-1.png" alt="EventTents" class="sp-tee-logo"></div>
               <p class="sp-tee-label">EventTents</p>
               <div class="sp-tee-hover">
-                <p class="sp-hover-desc">Professional event tent and marquee hire for weddings, festivals and corporate events.</p>
-                <a href="http://eventtents.ee/" target="_blank" rel="noopener noreferrer" class="sp-hover-link">Visit →</a>
+                <p class="sp-hover-desc" data-i18n="sp.eventtents.desc">Professional event tent and marquee hire for weddings, festivals and corporate events.</p>
+                <a href="http://eventtents.ee/" target="_blank" rel="noopener noreferrer" class="sp-hover-link" data-i18n="sponsors.visit">Visit →</a>
               </div>
             </div>
 
@@ -324,8 +331,8 @@
               <div class="sp-tee-body"><img src="images/sponsors/tesron.png" alt="Tesron" class="sp-tee-logo"></div>
               <p class="sp-tee-label">Tesron</p>
               <div class="sp-tee-hover">
-                <p class="sp-hover-desc">Estonian engineering and technical solutions for industrial and construction projects.</p>
-                <a href="https://www.tesron.ee/" target="_blank" rel="noopener noreferrer" class="sp-hover-link">Visit →</a>
+                <p class="sp-hover-desc" data-i18n="sp.tesron.desc">Estonian engineering and technical solutions for industrial and construction projects.</p>
+                <a href="https://www.tesron.ee/" target="_blank" rel="noopener noreferrer" class="sp-hover-link" data-i18n="sponsors.visit">Visit →</a>
               </div>
             </div>
 
@@ -334,8 +341,8 @@
               <div class="sp-tee-body"><img src="images/sponsors/Hoiupark-logo-regular-500x500px-profile_pic.png" alt="Hoiupark" class="sp-tee-logo"></div>
               <p class="sp-tee-label">Hoiupark</p>
               <div class="sp-tee-hover">
-                <p class="sp-hover-desc">Convenient and secure self-storage solutions in Märjamaa.</p>
-                <a href="https://hoiupark.ee/" target="_blank" rel="noopener noreferrer" class="sp-hover-link">Visit →</a>
+                <p class="sp-hover-desc" data-i18n="sp.hoiupark.desc">Convenient and secure self-storage solutions in Märjamaa.</p>
+                <a href="https://hoiupark.ee/" target="_blank" rel="noopener noreferrer" class="sp-hover-link" data-i18n="sponsors.visit">Visit →</a>
               </div>
             </div>
 
@@ -344,8 +351,8 @@
               <div class="sp-tee-body"><img src="images/EASY4_Must.png" alt="Easy4" class="sp-tee-logo"></div>
               <p class="sp-tee-label">Easy4</p>
               <div class="sp-tee-hover">
-                <p class="sp-hover-desc">Easy4 Disc Golf Club — home of disc golf at Järta Discgolfpark, Märjamaa.</p>
-                <button class="sp-hover-link" data-nav="home">Home page →</button>
+                <p class="sp-hover-desc" data-i18n="sp.easy4.desc">Easy4 Disc Golf Club — home of disc golf at Järta Discgolfpark, Märjamaa.</p>
+                <button class="sp-hover-link" data-nav="home" data-i18n="sp.easy4.homepage">Home page →</button>
               </div>
             </div>
 
@@ -356,9 +363,9 @@
                   <circle cx="20" cy="20" r="17" stroke="currentColor" stroke-width="2" fill="none"/>
                   <circle cx="20" cy="20" r="6"  fill="currentColor" opacity=".3"/>
                 </svg>
-                <span class="sp-free-text">Tee Available</span>
+                <span class="sp-free-text" data-i18n="sponsors.tee.available">Tee Available</span>
               </div>
-              <button class="sp-free-cta" data-nav="contact">Get in touch</button>
+              <button class="sp-free-cta" data-nav="contact" data-i18n="sponsors.tee.getintouch">Get in touch</button>
             </div>
 
             <div class="sp-tee-card">
@@ -366,8 +373,8 @@
               <div class="sp-tee-body"><img src="images/sponsors/ahjuliisu3.png" alt="AhjuLiisu" class="sp-tee-logo"></div>
               <p class="sp-tee-label">AhjuLiisu</p>
               <div class="sp-tee-hover">
-                <p class="sp-hover-desc">Handcrafted sauna stoves and traditional fireplace solutions built to last.</p>
-                <a href="https://www.ahjuliisu.ee/" target="_blank" rel="noopener noreferrer" class="sp-hover-link">Visit →</a>
+                <p class="sp-hover-desc" data-i18n="sp.ahjuliisu.desc">Handcrafted sauna stoves and traditional fireplace solutions built to last.</p>
+                <a href="https://www.ahjuliisu.ee/" target="_blank" rel="noopener noreferrer" class="sp-hover-link" data-i18n="sponsors.visit">Visit →</a>
               </div>
             </div>
 
@@ -376,8 +383,8 @@
               <div class="sp-tee-body"><img src="images/sponsors/LogoBarberLiis.png" alt="BarberLiis" class="sp-tee-logo"></div>
               <p class="sp-tee-label">BarberLiis</p>
               <div class="sp-tee-hover">
-                <p class="sp-hover-desc">Expert barbering and men's grooming in a welcoming local setting.</p>
-                <a href="https://www.facebook.com/barberliis/?locale=et_EE" target="_blank" rel="noopener noreferrer" class="sp-hover-link">Visit →</a>
+                <p class="sp-hover-desc" data-i18n="sp.barberliis.desc">Expert barbering and men's grooming in a welcoming local setting.</p>
+                <a href="https://www.facebook.com/barberliis/?locale=et_EE" target="_blank" rel="noopener noreferrer" class="sp-hover-link" data-i18n="sponsors.visit">Visit →</a>
               </div>
             </div>
 
@@ -386,8 +393,8 @@
               <div class="sp-tee-body"><img src="images/sponsors/adograaf%20logo-1.png" alt="ADOGRAAF" class="sp-tee-logo"></div>
               <p class="sp-tee-label">ADOGRAAF</p>
               <div class="sp-tee-hover">
-                <p class="sp-hover-desc">Creative graphic design and visual communication studio.</p>
-                <a href="https://adograaf.ee/" target="_blank" rel="noopener noreferrer" class="sp-hover-link">Visit →</a>
+                <p class="sp-hover-desc" data-i18n="sp.adograaf.desc">Creative graphic design and visual communication studio.</p>
+                <a href="https://adograaf.ee/" target="_blank" rel="noopener noreferrer" class="sp-hover-link" data-i18n="sponsors.visit">Visit →</a>
               </div>
             </div>
 
@@ -396,8 +403,8 @@
               <div class="sp-tee-body"><img src="images/sponsors/luhatuvi-logo-pais@2x-600x300.png" alt="Luhatuvi" class="sp-tee-logo"></div>
               <p class="sp-tee-label">Luhatuvi</p>
               <div class="sp-tee-hover">
-                <p class="sp-hover-desc">Local produce and natural goods from the Estonian countryside.</p>
-                <a href="https://luhatuvi.ee/" target="_blank" rel="noopener noreferrer" class="sp-hover-link">Visit →</a>
+                <p class="sp-hover-desc" data-i18n="sp.luhatuvi.desc">Local produce and natural goods from the Estonian countryside.</p>
+                <a href="https://luhatuvi.ee/" target="_blank" rel="noopener noreferrer" class="sp-hover-link" data-i18n="sponsors.visit">Visit →</a>
               </div>
             </div>
 
@@ -406,8 +413,8 @@
               <div class="sp-tee-body"><img src="images/sponsors/valmis%20logo_toyotaabi-1.png" alt="Toyotaabi" class="sp-tee-logo"></div>
               <p class="sp-tee-label">Toyotaabi</p>
               <div class="sp-tee-hover">
-                <p class="sp-hover-desc">Authorised Toyota vehicle service, parts and roadside assistance.</p>
-                <a href="https://toyotaabi.ee/" target="_blank" rel="noopener noreferrer" class="sp-hover-link">Visit →</a>
+                <p class="sp-hover-desc" data-i18n="sp.toyotaabi.desc">Authorised Toyota vehicle service, parts and roadside assistance.</p>
+                <a href="https://toyotaabi.ee/" target="_blank" rel="noopener noreferrer" class="sp-hover-link" data-i18n="sponsors.visit">Visit →</a>
               </div>
             </div>
 
@@ -416,8 +423,8 @@
               <div class="sp-tee-body"><img src="images/sponsors/wildjuniperstudio.png" alt="Wild Juniper Studio" class="sp-tee-logo"></div>
               <p class="sp-tee-label">Wild Juniper Studio</p>
               <div class="sp-tee-hover">
-                <p class="sp-hover-desc">Creative studio specialising in branding, design and visual storytelling.</p>
-                <a href="https://wjs.ee/" target="_blank" rel="noopener noreferrer" class="sp-hover-link">Visit →</a>
+                <p class="sp-hover-desc" data-i18n="sp.wjs.desc">Creative studio specialising in branding, design and visual storytelling.</p>
+                <a href="https://wjs.ee/" target="_blank" rel="noopener noreferrer" class="sp-hover-link" data-i18n="sponsors.visit">Visit →</a>
               </div>
             </div>
 
@@ -428,9 +435,9 @@
                   <circle cx="20" cy="20" r="17" stroke="currentColor" stroke-width="2" fill="none"/>
                   <circle cx="20" cy="20" r="6"  fill="currentColor" opacity=".3"/>
                 </svg>
-                <span class="sp-free-text">Tee Available</span>
+                <span class="sp-free-text" data-i18n="sponsors.tee.available">Tee Available</span>
               </div>
-              <button class="sp-free-cta" data-nav="contact">Get in touch</button>
+              <button class="sp-free-cta" data-nav="contact" data-i18n="sponsors.tee.getintouch">Get in touch</button>
             </div>
 
             <div class="sp-tee-card">
@@ -438,8 +445,8 @@
               <div class="sp-tee-body"><img src="images/sponsors/boardic.png" alt="Boardic" class="sp-tee-logo"></div>
               <p class="sp-tee-label">Boardic</p>
               <div class="sp-tee-hover">
-                <p class="sp-hover-desc">Skateboards, longboards and board sports gear for all skill levels.</p>
-                <a href="https://boardic.com/et/" target="_blank" rel="noopener noreferrer" class="sp-hover-link">Visit →</a>
+                <p class="sp-hover-desc" data-i18n="sp.boardic.desc">Skateboards, longboards and board sports gear for all skill levels.</p>
+                <a href="https://boardic.com/et/" target="_blank" rel="noopener noreferrer" class="sp-hover-link" data-i18n="sponsors.visit">Visit →</a>
               </div>
             </div>
 
@@ -448,8 +455,8 @@
               <div class="sp-tee-body"><img src="images/sponsors/EventTents%20logo-1-1.png" alt="EventTents" class="sp-tee-logo"></div>
               <p class="sp-tee-label">EventTents</p>
               <div class="sp-tee-hover">
-                <p class="sp-hover-desc">Professional event tent and marquee hire for weddings, festivals and corporate events.</p>
-                <a href="http://eventtents.ee/" target="_blank" rel="noopener noreferrer" class="sp-hover-link">Visit →</a>
+                <p class="sp-hover-desc" data-i18n="sp.eventtents.desc">Professional event tent and marquee hire for weddings, festivals and corporate events.</p>
+                <a href="http://eventtents.ee/" target="_blank" rel="noopener noreferrer" class="sp-hover-link" data-i18n="sponsors.visit">Visit →</a>
               </div>
             </div>
 
@@ -458,8 +465,8 @@
               <div class="sp-tee-body"><img src="images/sponsors/mesila1.png" alt="Mesila" class="sp-tee-logo"></div>
               <p class="sp-tee-label">Mesila</p>
               <div class="sp-tee-hover">
-                <p class="sp-hover-desc">Local honey and bee products straight from the hives of Märjamaa.</p>
-                <a href="https://www.facebook.com/p/Mesila-M%C3%A4rjamaa-100095173873199/" target="_blank" rel="noopener noreferrer" class="sp-hover-link">Visit →</a>
+                <p class="sp-hover-desc" data-i18n="sp.mesila.desc">Local honey and bee products straight from the hives of Märjamaa.</p>
+                <a href="https://www.facebook.com/p/Mesila-M%C3%A4rjamaa-100095173873199/" target="_blank" rel="noopener noreferrer" class="sp-hover-link" data-i18n="sponsors.visit">Visit →</a>
               </div>
             </div>
 
@@ -468,8 +475,8 @@
               <div class="sp-tee-body"><img src="images/sponsors/Hoiupark-logo-regular-500x500px-profile_pic.png" alt="Hoiupark" class="sp-tee-logo"></div>
               <p class="sp-tee-label">Hoiupark</p>
               <div class="sp-tee-hover">
-                <p class="sp-hover-desc">Convenient and secure self-storage solutions in Märjamaa.</p>
-                <a href="https://hoiupark.ee/" target="_blank" rel="noopener noreferrer" class="sp-hover-link">Visit →</a>
+                <p class="sp-hover-desc" data-i18n="sp.hoiupark.desc">Convenient and secure self-storage solutions in Märjamaa.</p>
+                <a href="https://hoiupark.ee/" target="_blank" rel="noopener noreferrer" class="sp-hover-link" data-i18n="sponsors.visit">Visit →</a>
               </div>
             </div>
 
@@ -478,8 +485,8 @@
               <div class="sp-tee-body"><img src="images/sponsors/atea.png" alt="Atea AS" class="sp-tee-logo"></div>
               <p class="sp-tee-label">Atea AS</p>
               <div class="sp-tee-hover">
-                <p class="sp-hover-desc">Leading IT infrastructure and services provider across the Nordics and Baltics.</p>
-                <a href="https://www.atea.ee" target="_blank" rel="noopener noreferrer" class="sp-hover-link">Visit →</a>
+                <p class="sp-hover-desc" data-i18n="sp.atea.desc">Leading IT infrastructure and services provider across the Nordics and Baltics.</p>
+                <a href="https://www.atea.ee" target="_blank" rel="noopener noreferrer" class="sp-hover-link" data-i18n="sponsors.visit">Visit →</a>
               </div>
             </div>
 
@@ -488,8 +495,8 @@
               <div class="sp-tee-body"><img src="images/sponsors/bobo.png" alt="BoBo" class="sp-tee-logo"></div>
               <p class="sp-tee-label">BoBo</p>
               <div class="sp-tee-hover">
-                <p class="sp-hover-desc">Fishing tackle, rods and outdoor gear for every angler.</p>
-                <a href="https://bobofishing.com/et" target="_blank" rel="noopener noreferrer" class="sp-hover-link">Visit →</a>
+                <p class="sp-hover-desc" data-i18n="sp.bobo.desc">Fishing tackle, rods and outdoor gear for every angler.</p>
+                <a href="https://bobofishing.com/et" target="_blank" rel="noopener noreferrer" class="sp-hover-link" data-i18n="sponsors.visit">Visit →</a>
               </div>
             </div>
 
@@ -506,8 +513,8 @@
 
       <div class="page-hero">
         <div class="container">
-          <h1>Contact</h1>
-          <p>Find us on the course or reach out online.</p>
+          <h1 data-i18n="contact.title">Contact</h1>
+          <p data-i18n="contact.subtitle">Find us on the course or reach out online.</p>
         </div>
       </div>
 
@@ -522,8 +529,8 @@
                 <path d="M2 8l10 7 10-7" stroke="#F7941E" stroke-width="2" stroke-linecap="round"/>
               </svg>
             </div>
-            <h3>Email</h3>
-            <p>Drop us a message and we'll get back to you.</p>
+            <h3 data-i18n="contact.email.title">Email</h3>
+            <p data-i18n="contact.email.desc">Drop us a message and we'll get back to you.</p>
             <a href="mailto:info@easy4.ee" class="contact-btn">info@easy4.ee</a>
           </div>
 
@@ -535,8 +542,8 @@
                 <circle cx="12" cy="9" r="2.5" stroke="#F7941E" stroke-width="2"/>
               </svg>
             </div>
-            <h3>Järta Discgolfpark</h3>
-            <p>Our flagship course in Märjamaa, Estonia.</p>
+            <h3 data-i18n="contact.jarta.title">Järta Discgolfpark</h3>
+            <p data-i18n="contact.jarta.desc">Our flagship course in Märjamaa, Estonia.</p>
             <a href="https://maps.google.com/?q=J%C3%A4rta+Discgolfipark+M%C3%A4rjamaa+Estonia" target="_blank" rel="noopener noreferrer" class="contact-btn">Google Maps</a>
             <a href="https://udisc.com/courses/jaerta-discgolfi-park-d4Ik" target="_blank" rel="noopener noreferrer" class="contact-btn contact-btn-ghost">UDisc</a>
           </div>
@@ -549,8 +556,8 @@
                 <circle cx="12" cy="9" r="2.5" stroke="#F7941E" stroke-width="2"/>
               </svg>
             </div>
-            <h3>Märjamaa Discgolfpark</h3>
-            <p>Our second course right in the heart of Märjamaa.</p>
+            <h3 data-i18n="contact.marjamaa.title">Märjamaa Discgolfpark</h3>
+            <p data-i18n="contact.marjamaa.desc">Our second course right in the heart of Märjamaa.</p>
             <a href="https://www.google.com/maps/place/M%C3%A4rjamaa+discgolfpark/@58.9058706,24.4225734,17z/data=!3m1!4b1!4m6!3m5!1s0x46ed374e5a8bd653:0x2fcce7cea66dbf90!8m2!3d58.9058706!4d24.4251483!16s%2Fg%2F11w8kj6ypw?entry=ttu&g_ep=EgoyMDI2MDQwNy4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer" class="contact-btn">Google Maps</a>
             <a href="https://udisc.com/courses/maerjamaa-discgolfi-park-y0VS" target="_blank" rel="noopener noreferrer" class="contact-btn contact-btn-ghost">UDisc</a>
           </div>
@@ -562,8 +569,8 @@
                 <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" stroke="#F7941E" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
               </svg>
             </div>
-            <h3>Facebook</h3>
-            <p>Follow us for news, event results, and club updates.</p>
+            <h3 data-i18n="contact.fb.title">Facebook</h3>
+            <p data-i18n="contact.fb.desc">Follow us for news, event results, and club updates.</p>
             <a href="https://www.facebook.com/DGklubiEASY4" target="_blank" rel="noopener noreferrer" class="contact-btn">DGklubiEASY4</a>
           </div>
 
@@ -576,8 +583,8 @@
                 <circle cx="17.5" cy="6.5" r="1" fill="#F7941E"/>
               </svg>
             </div>
-            <h3>Instagram</h3>
-            <p>Photos, reels, and behind-the-scenes from the course.</p>
+            <h3 data-i18n="contact.ig.title">Instagram</h3>
+            <p data-i18n="contact.ig.desc">Photos, reels, and behind-the-scenes from the course.</p>
             <a href="https://www.instagram.com/dgclubeasy4" target="_blank" rel="noopener noreferrer" class="contact-btn">dgclubeasy4</a>
           </div>
 
@@ -589,8 +596,8 @@
                 <path d="M10 9l5 3-5 3V9z" fill="#F7941E"/>
               </svg>
             </div>
-            <h3>YouTube</h3>
-            <p>Watch tournament highlights and course coverage on our channel.</p>
+            <h3 data-i18n="contact.yt.title">YouTube</h3>
+            <p data-i18n="contact.yt.desc">Watch tournament highlights and course coverage on our channel.</p>
             <a href="https://www.youtube.com/@dgklubieasy4529" target="_blank" rel="noopener noreferrer" class="contact-btn">DG Klubi Easy4</a>
           </div>
 
@@ -647,6 +654,7 @@
     </div>
   </footer>
 
+  <script src="translations.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

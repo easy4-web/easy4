@@ -9,6 +9,52 @@ const CAL_ID  = 'c_f3d2623080b0ef7b825ba98532ae9e981600ae66429111ff5032f35dc539d
 const API_KEY = 'AIzaSyDXfsxcLQ7raquqvUxWvdjBTq8uDyrFsmo';
 const TZ      = 'Europe/Tallinn';
 
+/* ── i18n ────────────────────────────────────────────────── */
+let lang = localStorage.getItem('e4lang') || 'en';
+
+function t(key) {
+  return (TRANSLATIONS[lang] && TRANSLATIONS[lang][key] !== undefined)
+       ? TRANSLATIONS[lang][key]
+       : (TRANSLATIONS.en[key] !== undefined ? TRANSLATIONS.en[key] : key);
+}
+
+function applyTranslations() {
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    el.textContent = t(el.dataset.i18n);
+  });
+  document.querySelectorAll('[data-i18n-html]').forEach(el => {
+    el.innerHTML = t(el.dataset.i18nHtml);
+  });
+  // Weekday labels
+  document.querySelectorAll('[data-i18n-wd]').forEach(el => {
+    const idx = parseInt(el.dataset.i18nWd, 10);
+    const wds = t('cal.weekdays');
+    if (Array.isArray(wds) && wds[idx] !== undefined) el.textContent = wds[idx];
+  });
+  document.documentElement.lang = lang === 'et' ? 'et' : 'en';
+}
+
+function setLanguage(newLang) {
+  lang = newLang;
+  localStorage.setItem('e4lang', lang);
+  applyTranslations();
+  document.querySelectorAll('.lang-btn').forEach(b =>
+    b.classList.toggle('active', b.dataset.lang === lang)
+  );
+  if (calLoaded) {
+    renderUpcoming();
+    renderMonth();
+    document.getElementById('monthDetail').hidden = true;
+  }
+  if (lbLoaded && lbPodium.length) {
+    renderLeaderCard(lbPodium);
+    const sheet = SHEETS[lbActive];
+    const sub = sheet.subtitle;
+    document.getElementById('lbSubtitle').textContent =
+      (typeof sub === 'object' ? (sub[lang] || sub.en) : sub);
+  }
+}
+
 /* ── Page navigation ─────────────────────────────────────── */
 const VALID_PAGES = new Set(['home', 'events', 'leaderboards', 'sponsors', 'contact']);
 const navToggle   = document.getElementById('navToggle');
@@ -65,6 +111,13 @@ window.addEventListener('popstate', e => {
   navigate(VALID_PAGES.has(hash) ? hash : 'home');
   const yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+  // Apply translations and set initial active lang button
+  applyTranslations();
+  document.querySelectorAll('.lang-btn').forEach(b => {
+    b.classList.toggle('active', b.dataset.lang === lang);
+    b.addEventListener('click', () => setLanguage(b.dataset.lang));
+  });
 })();
 
 
@@ -101,7 +154,7 @@ async function initCalendar() {
     const data = await res.json();
     allEvents  = data.items || [];
   } catch (err) {
-    status.innerHTML = `<p style="color:rgba(255,255,255,.4)">Could not load events. Please try again later.</p>`;
+    status.innerHTML = `<p style="color:rgba(255,255,255,.4)">${t('events.error')}</p>`;
     return;
   }
 
@@ -118,10 +171,8 @@ async function initCalendar() {
 }
 
 /* ── Helpers ─────────────────────────────────────────────── */
-const MONTHS = ['January','February','March','April','May','June',
-                'July','August','September','October','November','December'];
-const MONTHS_SHORT = ['Jan','Feb','Mar','Apr','May','Jun',
-                      'Jul','Aug','Sep','Oct','Nov','Dec'];
+const getMonths      = () => t('cal.months');
+const getMonthsShort = () => t('cal.months_short');
 
 function eventStart(ev) {
   return ev.start.dateTime ? new Date(ev.start.dateTime) : new Date(ev.start.date + 'T00:00:00');
@@ -132,9 +183,10 @@ function eventEnd(ev) {
 function isAllDay(ev) { return !!ev.start.date && !ev.start.dateTime; }
 
 function formatTime(ev) {
-  if (isAllDay(ev)) return 'All day';
+  if (isAllDay(ev)) return t('cal.allday');
   const s = eventStart(ev), e = eventEnd(ev);
-  const fmt = d => d.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', timeZone: TZ });
+  const locale = lang === 'et' ? 'et-EE' : 'en-GB';
+  const fmt = d => d.toLocaleTimeString(locale, { hour: '2-digit', minute: '2-digit', timeZone: TZ });
   return `${fmt(s)} – ${fmt(e)}`;
 }
 
@@ -160,7 +212,7 @@ function renderUpcoming() {
     li.innerHTML = `
       <div class="event-date-badge" aria-hidden="true">
         <span class="event-date-day">${start.getDate()}</span>
-        <span class="event-date-month">${MONTHS_SHORT[start.getMonth()]}</span>
+        <span class="event-date-month">${getMonthsShort()[start.getMonth()]}</span>
       </div>
       <div class="event-info">
         <div class="event-name">${escHtml(ev.summary || 'Event')}</div>
@@ -176,7 +228,7 @@ function renderUpcoming() {
 function renderMonth() {
   const label = document.getElementById('monthLabel');
   const grid  = document.getElementById('monthGrid');
-  label.textContent = `${MONTHS[monthCursor.getMonth()]} ${monthCursor.getFullYear()}`;
+  label.textContent = `${getMonths()[monthCursor.getMonth()]} ${monthCursor.getFullYear()}`;
   grid.innerHTML = '';
 
   const year  = monthCursor.getFullYear();
@@ -235,7 +287,7 @@ function showDayDetail(day, events, cell) {
   const dTitle = document.getElementById('monthDetailDate');
   const dList  = document.getElementById('monthDetailList');
 
-  dTitle.textContent = day.toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+  dTitle.textContent = day.toLocaleDateString(lang === 'et' ? 'et-EE' : 'en-GB', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
   dList.innerHTML = events.map(ev => `
     <li>
       <div class="det-name">${escHtml(ev.summary || 'Event')}</div>
@@ -290,11 +342,16 @@ function escHtml(str) {
    { label: 'Display Name', subtitle: 'Short description', tab: 'ExactTabName' }
    tab is the sheet tab name exactly as it appears at the bottom of the spreadsheet */
 const SHEETS = [
-  { label: 'Holariäss 2026', subtitle: 'Easy4 members who have hit the perfect throw.', tab: 'HOLARIÄSS2026' }
+  {
+    label:    'Holariäss 2026',
+    subtitle: { en: 'Easy4 members who have hit the perfect throw.', et: 'Easy4 liikmed, kes on sooritanud täiusliku viske.' },
+    tab:      'HOLARIÄSS2026'
+  }
 ];
 
-let lbLoaded = false;
-let lbActive = 0; // index into SHEETS
+let lbLoaded  = false;
+let lbActive  = 0; // index into SHEETS
+let lbPodium  = []; // last rendered podium for re-render on lang switch
 
 /* ── Init (lazy, called on first navigation to leaderboards) ── */
 function initLeaderboard() {
@@ -340,7 +397,9 @@ async function loadSheet(index) {
 
   // Update heading
   document.getElementById('lbTitle').textContent    = sheet.label;
-  document.getElementById('lbSubtitle').textContent = sheet.subtitle;
+  const subVal = sheet.subtitle;
+  document.getElementById('lbSubtitle').textContent =
+    (typeof subVal === 'object' ? (subVal[lang] || subVal.en) : subVal);
 
   try {
     const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=${encodeURIComponent(sheet.tab)}`;
@@ -403,13 +462,14 @@ async function loadSheet(index) {
       podium = positions;
     }
 
+    lbPodium = podium;
     renderLeaderCard(podium);
     renderTable(cols, rows);
     showLbStatus(false);
   } catch (err) {
     showLbStatus(false);
     document.getElementById('lbTableWrap').innerHTML =
-      `<p class="lb-error">Could not load leaderboard. Please try again later.</p>`;
+      `<p class="lb-error">${t('lb.error')}</p>`;
   }
 }
 
@@ -424,8 +484,8 @@ function renderLeaderCard(podium) {
   const nameStr = names => names.map(p => escHtml(p.name)).join(' &amp; ');
 
   const runnerUp = [
-    ...second.map(p => ({ medal: '2nd', ...p })),
-    ...third.map(p =>  ({ medal: '3rd', ...p }))
+    ...second.map(p => ({ medal: t('lb.2nd'), ...p })),
+    ...third.map(p =>  ({ medal: t('lb.3rd'), ...p }))
   ];
 
   card.innerHTML = `
@@ -440,9 +500,9 @@ function renderLeaderCard(podium) {
         </svg>
       </div>
       <div class="lb-leader-info">
-        <p class="lb-leader-label">${first.length > 1 ? 'Current Leaders' : 'Current Leader'}</p>
+        <p class="lb-leader-label">${first.length > 1 ? t('lb.leaders') : t('lb.leader')}</p>
         <p class="lb-leader-name">${nameStr(first)}</p>
-        <p class="lb-leader-total">${first[0].total} m total</p>
+        <p class="lb-leader-total">${first[0].total} ${t('lb.m_total')}</p>
         ${runnerUp.length ? `<div class="lb-runner-up">${
           runnerUp.map(p => `<span class="lb-runner-item"><span class="lb-runner-pos">${p.medal}</span>${escHtml(p.name)} &middot; ${p.total} m</span>`).join('')
         }</div>` : ''}
