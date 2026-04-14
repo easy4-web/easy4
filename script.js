@@ -381,25 +381,30 @@ async function loadSheet(index) {
       rows = rows.map(row => [...row.slice(0, nodiIdx), ...row.slice(nodiIdx + 1), row[nodiIdx]]);
     }
 
-    // Calculate leader(s) — sum MEETRIT per NIMI
-    const nimiIdx   = cols.findIndex(c => c.trim().toUpperCase() === 'NIMI');
+    // Calculate top 3 — sum MEETRIT per NIMI, sort descending
+    const nimiIdx    = cols.findIndex(c => c.trim().toUpperCase() === 'NIMI');
     const meetritIdx = cols.findIndex(c => c.trim().toUpperCase() === 'MEETRIT');
-    let leaders = [];
+    let podium = [];
     if (nimiIdx !== -1 && meetritIdx !== -1) {
       const totals = {};
       rows.forEach(row => {
-        const name  = (row[nimiIdx] || '').trim();
-        const dist  = parseFloat((row[meetritIdx] || '0').toString().replace(',', '.')) || 0;
+        const name = (row[nimiIdx] || '').trim();
+        const dist = parseFloat((row[meetritIdx] || '0').toString().replace(',', '.')) || 0;
         if (name) totals[name] = (totals[name] || 0) + dist;
       });
-      const maxTotal = Math.max(...Object.values(totals));
-      leaders = Object.entries(totals)
-        .filter(([, total]) => total === maxTotal)
-        .map(([name, total]) => ({ name, total }));
+      // Group by total to handle ties, then take top 3 positions
+      const sorted = Object.entries(totals).sort(([, a], [, b]) => b - a);
+      const positions = [];
+      let lastTotal = null, lastPos = 0;
+      sorted.forEach(([name, total]) => {
+        if (total !== lastTotal) { lastPos++; lastTotal = total; }
+        if (lastPos <= 3) positions.push({ name, total, pos: lastPos });
+      });
+      podium = positions;
     }
 
-    renderLeaderCard(leaders);
-    renderTable(cols, rows, leaders.map(l => l.name));
+    renderLeaderCard(podium);
+    renderTable(cols, rows);
     showLbStatus(false);
   } catch (err) {
     showLbStatus(false);
@@ -408,13 +413,20 @@ async function loadSheet(index) {
   }
 }
 
-function renderLeaderCard(leaders) {
+function renderLeaderCard(podium) {
   const card = document.getElementById('lbLeaderCard');
-  if (!leaders.length) { card.hidden = true; return; }
+  if (!podium.length) { card.hidden = true; return; }
 
-  const isTie = leaders.length > 1;
-  const total = leaders[0].total;
-  const names = leaders.map(l => escHtml(l.name)).join(' &amp; ');
+  const first  = podium.filter(p => p.pos === 1);
+  const second = podium.filter(p => p.pos === 2);
+  const third  = podium.filter(p => p.pos === 3);
+
+  const nameStr = names => names.map(p => escHtml(p.name)).join(' &amp; ');
+
+  const runnerUp = [
+    ...second.map(p => ({ medal: '2nd', ...p })),
+    ...third.map(p =>  ({ medal: '3rd', ...p }))
+  ];
 
   card.innerHTML = `
     <div class="lb-leader-inner">
@@ -428,19 +440,19 @@ function renderLeaderCard(leaders) {
         </svg>
       </div>
       <div class="lb-leader-info">
-        <p class="lb-leader-label">${isTie ? 'Current Leaders' : 'Current Leader'}</p>
-        <p class="lb-leader-name">${names}</p>
-        <p class="lb-leader-total">${total} m total</p>
+        <p class="lb-leader-label">${first.length > 1 ? 'Current Leaders' : 'Current Leader'}</p>
+        <p class="lb-leader-name">${nameStr(first)}</p>
+        <p class="lb-leader-total">${first[0].total} m total</p>
+        ${runnerUp.length ? `<div class="lb-runner-up">${
+          runnerUp.map(p => `<span class="lb-runner-item"><span class="lb-runner-pos">${p.medal}</span>${escHtml(p.name)} &middot; ${p.total} m</span>`).join('')
+        }</div>` : ''}
       </div>
     </div>`;
   card.hidden = false;
 }
 
-function renderTable(cols, rows, leaderNames = []) {
+function renderTable(cols, rows) {
   const wrap = document.getElementById('lbTableWrap');
-  const leaderSet = new Set(leaderNames.map(n => n.trim().toLowerCase()));
-
-  const nimiIdx = cols.findIndex(c => c.trim().toUpperCase() === 'NIMI');
 
   const table = document.createElement('table');
   table.className = 'lb-table';
@@ -454,8 +466,6 @@ function renderTable(cols, rows, leaderNames = []) {
   const tbody = document.createElement('tbody');
   rows.forEach(row => {
     const tr = document.createElement('tr');
-    const name = nimiIdx !== -1 ? (row[nimiIdx] || '').trim().toLowerCase() : '';
-    if (leaderSet.has(name)) tr.classList.add('lb-row-leader');
     tr.innerHTML = row.map(cell => `<td>${escHtml(String(cell))}</td>`).join('');
     tbody.appendChild(tr);
   });

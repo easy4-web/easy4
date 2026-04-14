@@ -791,15 +791,30 @@ h1, h2, h3 {
   font-size: .9rem;
   color: rgba(255,255,255,.5);
 }
+.lb-runner-up {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255,255,255,.1);
+}
+.lb-runner-item {
+  font-size: .82rem;
+  color: rgba(255,255,255,.5);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.lb-runner-pos {
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  color: var(--orange);
+  opacity: .7;
+  text-transform: uppercase;
+}
 
-/* ── Leader row highlight ────────────────────────────────── */
-.lb-table tbody tr.lb-row-leader {
-  background: rgba(247,148,30,.08);
-  border-left: 3px solid var(--orange);
-}
-.lb-table tbody tr.lb-row-leader:hover {
-  background: rgba(247,148,30,.14);
-}
 
 .lb-error {
   text-align: center;
