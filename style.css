@@ -1035,6 +1035,7 @@ h1, h2, h3 {
 }
 
 .sp-tee-card {
+  position: relative;
   background: var(--bg);
   border-radius: 10px;
   overflow: hidden;
@@ -1086,6 +1087,80 @@ h1, h2, h3 {
   text-align: center;
   color: var(--text-muted);
   border-top: 1px solid var(--border);
+}
+
+/* ── Hover overlay (tee cards) ── */
+.sp-tee-hover {
+  position: absolute;
+  inset: 0;
+  background: rgba(10,10,10,.93);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 18px 14px;
+  opacity: 0;
+  transition: opacity .22s;
+  pointer-events: none;
+  border-radius: 10px;
+}
+.sp-tee-card:not(.sp-free):hover .sp-tee-hover {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.sp-hover-desc {
+  font-size: .78rem;
+  color: rgba(255,255,255,.8);
+  text-align: center;
+  line-height: 1.55;
+}
+
+.sp-hover-link {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: .82rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--orange);
+  padding: 6px 16px;
+  border: 1.5px solid var(--orange);
+  border-radius: var(--r);
+  background: transparent;
+  cursor: pointer;
+  transition: background .15s, color .15s;
+  text-decoration: none;
+  display: inline-block;
+}
+.sp-hover-link:hover {
+  background: var(--orange);
+  color: var(--black);
+}
+
+/* ── Hover overlay (name sponsor cards) ── */
+.sp-name-card { position: relative; overflow: hidden; }
+.sp-name-hover {
+  position: absolute;
+  inset: 0;
+  background: rgba(10,10,10,.93);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  padding: 32px 36px;
+  opacity: 0;
+  transition: opacity .22s;
+  pointer-events: none;
+  border-radius: 12px;
+}
+.sp-name-card:hover .sp-name-hover {
+  opacity: 1;
+  pointer-events: auto;
+}
+.sp-name-hover .sp-hover-desc {
+  font-size: .95rem;
 }
 
 /* ── Free / available tee ── */
