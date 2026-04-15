@@ -222,7 +222,7 @@ function renderUpcoming() {
         <div class="event-name">${escHtml(ev.summary || 'Event')}</div>
         <div class="event-time">${formatTime(ev)}</div>
         ${ev.location ? `<div class="event-location"><svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M8 1.5C5.5 1.5 3.5 3.5 3.5 6c0 3.5 4.5 8.5 4.5 8.5s4.5-5 4.5-8.5c0-2.5-2-4.5-4.5-4.5z" stroke="currentColor" stroke-width="1.4"/><circle cx="8" cy="6" r="1.5" stroke="currentColor" stroke-width="1.4"/></svg>${escHtml(ev.location)}</div>` : ''}
-        ${ev.description ? `<div class="event-desc">${escHtml(ev.description)}</div>` : ''}
+        ${ev.description ? `<div class="event-desc">${linkify(ev.description)}</div>` : ''}
       </div>`;
     list.appendChild(li);
   });
@@ -297,7 +297,7 @@ function showDayDetail(day, events, cell) {
       <div class="det-name">${escHtml(ev.summary || 'Event')}</div>
       <div class="det-time">${formatTime(ev)}</div>
       ${ev.location ? `<div class="det-location"><svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M8 1.5C5.5 1.5 3.5 3.5 3.5 6c0 3.5 4.5 8.5 4.5 8.5s4.5-5 4.5-8.5c0-2.5-2-4.5-4.5-4.5z" stroke="currentColor" stroke-width="1.4"/><circle cx="8" cy="6" r="1.5" stroke="currentColor" stroke-width="1.4"/></svg>${escHtml(ev.location)}</div>` : ''}
-      ${ev.description ? `<div class="det-desc">${escHtml(ev.description)}</div>` : ''}
+      ${ev.description ? `<div class="det-desc">${linkify(ev.description)}</div>` : ''}
     </li>`).join('');
 
   detail.hidden = false;
@@ -335,6 +335,21 @@ function setupMonthNav() {
 /* ── Utility ─────────────────────────────────────────────── */
 function escHtml(str) {
   return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+/* Convert URLs in plain text to clickable links (safe — escapes HTML first) */
+function linkify(str) {
+  const urlRe = /(https?:\/\/\S+)/g;
+  return str.split(urlRe).map((part, i) => {
+    if (i % 2 === 1) {
+      // Strip common trailing punctuation that isn't part of the URL
+      const trailMatch = part.match(/[.,!?);]+$/);
+      const trail = trailMatch ? trailMatch[0] : '';
+      const url   = part.slice(0, part.length - trail.length);
+      return `<a href="${escHtml(url)}" target="_blank" rel="noopener noreferrer" class="event-link">${escHtml(url)}</a>${escHtml(trail)}`;
+    }
+    return escHtml(part).replace(/\n/g, '<br>');
+  }).join('');
 }
 
 
