@@ -31,6 +31,10 @@ function applyTranslations() {
     const wds = t('cal.weekdays');
     if (Array.isArray(wds) && wds[idx] !== undefined) el.textContent = wds[idx];
   });
+  // Tee number badges
+  document.querySelectorAll('[data-tee]').forEach(el => {
+    el.textContent = t('sp.tee.prefix') + ' ' + el.dataset.tee;
+  });
   document.documentElement.lang = lang === 'et' ? 'et' : 'en';
 }
 

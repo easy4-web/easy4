@@ -66,6 +66,7 @@ var TRANSLATIONS = {
     'sponsors.name.sub':        'Atea and Tesron proudly sponsor the Easy4 weekly tournament series.',
     'sponsors.tee.title':       'Tee Sponsors',
     'sponsors.tee.sub':         'Each sponsor supports a dedicated tee on the Järta Discgolfpark course.',
+    'sp.tee.prefix':            'Tee',
     'sponsors.tee.available':   'Tee Available',
     'sponsors.tee.getintouch':  'Get in touch',
     'sponsors.visit':           'Visit →',
@@ -127,7 +128,7 @@ var TRANSLATIONS = {
     /* ── Welcome ─────────────────────────────────────────── */
     'welcome.title':    'Tere tulemast <span class="accent">Easy4</span>-sse',
     'welcome.p1':       'Easy4 Discgolfi Klubi on leidnud kodu Järta Discgolfipargis Märjamaal — ühe Eesti parima discgolfikogemuse juures. Autentse Eesti looduse keskel paiknev rada pakub väljakutseid ja rahulolu igale tasemele.',
-    'welcome.p2':       'Olgu sa kogenud holariäss või hoiad disci esimest korda käes — meie kogukond võtab sind soojalt vastu. Tule liitu meiega fairway\'del!',
+    'welcome.p2':       'Oled sa kogenud holariäss või hoiad disci esimest korda käes — meie kogukond võtab sind soojalt vastu. Tule liitu meiega fairway\'del!',
 
     /* ── Feature cards ───────────────────────────────────── */
     'feature.course.title': 'Rada',
@@ -135,7 +136,7 @@ var TRANSLATIONS = {
     'feature.compete.title': 'Võistle',
     'feature.compete.desc':  'Hooajapikkused turniirid ja vabaajamängud kõikidele tasemetele.',
     'feature.community.title': 'Kogukond',
-    'feature.community.desc':  'Soe klubi discgolfaritele igal tasemel.',
+    'feature.community.desc':  'Sõbralik klubi discgolfaritele igal tasemel.',
 
     /* ── Events page ─────────────────────────────────────── */
     'events.title':        'Üritused',
@@ -170,8 +171,9 @@ var TRANSLATIONS = {
     'sponsors.subtitle':        'Ettevõtted, kes toetavad Easy4 Discgolfi Klubi ja Järta Discgolfparki.',
     'sponsors.name.title':      'Turniiri peasponsorid',
     'sponsors.name.sub':        'Atea ja Tesron sponsoreerivad uhkusega Easy4 iganädalast turniiriseriat.',
-    'sponsors.tee.title':       'Teesponsorid',
-    'sponsors.tee.sub':         'Iga sponsor toetab ühte pühendatud teed Järta Discgolfpargi rajal.',
+    'sponsors.tee.title':       'Rajasponsorid',
+    'sponsors.tee.sub':         'Iga sponsor toetab ühte pühendatud rada Järta Discgolfpargis.',
+    'sp.tee.prefix':            'Rada',
     'sponsors.tee.available':   'Tee vaba',
     'sponsors.tee.getintouch':  'Võta ühendust',
     'sponsors.visit':           'Külasta →',
