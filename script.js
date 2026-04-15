@@ -142,7 +142,7 @@ async function initCalendar() {
   try {
     const now      = new Date().toISOString();
     const twoMonths = new Date();
-    twoMonths.setMonth(twoMonths.getMonth() + 2);
+    twoMonths.setMonth(twoMonths.getMonth() + 1);
     const future   = twoMonths.toISOString();
     const endpoint = `https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(CAL_ID)}/events`
       + `?key=${API_KEY}`
