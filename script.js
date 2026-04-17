@@ -384,6 +384,17 @@ const SHEETS = [
     label:    'Holariäss 2026',
     subtitle: { en: 'Easy4 members who have hit the perfect throw.', et: 'Easy4 liikmed, kes on sooritanud täiusliku viske.' },
     tab:      'HOLARIÄSS2026'
+  },
+  {
+    label:    'Holariässad',
+    subtitle: { en: 'All-time Easy4 Holariäss winners — the yearly hole-in-one challenge.', et: 'Easy4 Holariässi ajaloolised võitjad — iga-aastane ässaviske väljakutse.' },
+    tab:      'Holariässad'
+  },
+  {
+    label:    'Klubi meistrid',
+    subtitle: { en: 'Easy4 Club Championship winners through the years.', et: 'Easy4 klubi meistrivõistluste võitjad läbi aastate.' },
+    tab:      'Klubi meistrid',
+    headers:  ['AASTA', 'MEHED', 'NAISED', 'NOORED', 'RAJAD']
   }
 ];
 
@@ -424,6 +435,7 @@ function switchSheet(index) {
     btn.setAttribute('aria-selected', String(i === index));
   });
 
+  document.getElementById('lbLeaderCard').hidden = true;
   document.getElementById('lbTableWrap').innerHTML = '';
   showLbStatus(true);
   loadSheet(index);
@@ -471,6 +483,11 @@ async function loadSheet(index) {
     let cols = keepIdx.map(i => allCols[i]);
     let rows = allRows.map(row => keepIdx.map(i => row[i] ?? ''));
 
+    // Override column headers if the sheet config provides clean names
+    if (sheet.headers) {
+      cols = cols.map((c, i) => sheet.headers[i] || c);
+    }
+
     // Move "Nodi" column to the end if present
     const nodiIdx = cols.findIndex(c => c.trim().toLowerCase() === 'nodi');
     if (nodiIdx !== -1 && nodiIdx !== cols.length - 1) {
@@ -478,9 +495,9 @@ async function loadSheet(index) {
       rows = rows.map(row => [...row.slice(0, nodiIdx), ...row.slice(nodiIdx + 1), row[nodiIdx]]);
     }
 
-    // Calculate top 3 — sum MEETRIT per NIMI, sort descending
+    // Calculate top 3 — sum MEETRIT / MEETREID per NIMI, sort descending
     const nimiIdx    = cols.findIndex(c => c.trim().toUpperCase() === 'NIMI');
-    const meetritIdx = cols.findIndex(c => c.trim().toUpperCase() === 'MEETRIT');
+    const meetritIdx = cols.findIndex(c => ['MEETRIT', 'MEETREID'].includes(c.trim().toUpperCase()));
     let podium = [];
     if (nimiIdx !== -1 && meetritIdx !== -1) {
       const totals = {};
