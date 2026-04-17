@@ -463,8 +463,9 @@ async function loadSheet(index) {
     const data  = JSON.parse(match[1]);
     const table = data.table;
 
-    // Column headers — only A–H (first 8)
-    const allCols = table.cols.slice(0, 8).map(c => c.label || c.id);
+    // Column headers — only A–H (first 8); use label only so columns
+    // with no label (empty string) are correctly treated as headerless
+    const allCols = table.cols.slice(0, 8).map(c => c.label);
 
     // Rows — each cell has .v (value) and .f (formatted string), capped at 8 cols
     const allRows = (table.rows || []).map(r =>
