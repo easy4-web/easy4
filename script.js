@@ -387,7 +387,7 @@ const SHEETS = [
   },
   {
     label:    'Holariässad',
-    subtitle: { en: 'All-time Easy4 Holariäss winners — the yearly hole-in-one challenge.', et: 'Easy4 Holariässi ajaloolised võitjad — iga-aastane ässaviske väljakutse.' },
+    subtitle: { en: 'All-time Easy4 Holariäss winners — the yearly hole-in-one challenge.', et: 'Easy4 Holariässi ajaloolised võitjad — iga-aastane hole-in-one väljakutse.' },
     tab:      'Holariässad'
   },
   {
