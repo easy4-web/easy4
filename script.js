@@ -388,7 +388,8 @@ const SHEETS = [
   {
     label:    'Holariässad',
     subtitle: { en: 'All-time Easy4 Holariäss winners — the yearly hole-in-one challenge.', et: 'Easy4 Holariässi ajaloolised võitjad — iga-aastane hole-in-one väljakutse.' },
-    tab:      'Holariässad'
+    tab:      'Holariässad',
+    noPodium: true
   },
   {
     label:    'Klubi meistrid',
@@ -500,7 +501,7 @@ async function loadSheet(index) {
     const nimiIdx    = cols.findIndex(c => c.trim().toUpperCase() === 'NIMI');
     const meetritIdx = cols.findIndex(c => ['MEETRIT', 'MEETREID'].includes(c.trim().toUpperCase()));
     let podium = [];
-    if (nimiIdx !== -1 && meetritIdx !== -1) {
+    if (!sheet.noPodium && nimiIdx !== -1 && meetritIdx !== -1) {
       const totals = {};
       rows.forEach(row => {
         const name = (row[nimiIdx] || '').trim();
