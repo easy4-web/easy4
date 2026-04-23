@@ -17,6 +17,7 @@ var TRANSLATIONS = {
     'hero.tagline':     'Disc Golf Club &nbsp;·&nbsp; Estonia',
     'hero.cta.events':  'View Events',
     'hero.cta.lb':      'Leaderboards',
+    'hero.cta.ctp':     'CTP App',
 
     /* ── Welcome ─────────────────────────────────────────── */
     'welcome.title':    'Welcome to <span class="accent">Easy4</span>',
@@ -124,6 +125,7 @@ var TRANSLATIONS = {
     'hero.tagline':     'Discgolfi Klubi &nbsp;·&nbsp; Eesti',
     'hero.cta.events':  'Vaata üritusi',
     'hero.cta.lb':      'Edetabel',
+    'hero.cta.ctp':     'CTP App',
 
     /* ── Welcome ─────────────────────────────────────────── */
     'welcome.title':    'Tere tulemast <span class="accent">Easy4</span>-sse',
