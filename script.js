@@ -383,7 +383,8 @@ const SHEETS = [
   {
     label:    'Holariäss 2026',
     subtitle: { en: 'Easy4 members who have hit the perfect throw.', et: 'Easy4 liikmed, kes on sooritanud täiusliku viske.' },
-    tab:      'HOLARIÄSS2026'
+    tab:      'HOLARIÄSS2026',
+    submitUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSfWAtQ_h0UhEMBd1yb2lioV3wU4DwVNCpZ5TJh_mfCizFLj3w/viewform'
   },
   {
     label:    'Holariässad',
@@ -451,6 +452,16 @@ async function loadSheet(index) {
   const subVal = sheet.subtitle;
   document.getElementById('lbSubtitle').textContent =
     (typeof subVal === 'object' ? (subVal[lang] || subVal.en) : subVal);
+
+  // Show/hide submit button
+  const submitWrap = document.getElementById('lbSubmitWrap');
+  const submitBtn  = document.getElementById('lbSubmitBtn');
+  if (sheet.submitUrl) {
+    submitBtn.href       = sheet.submitUrl;
+    submitWrap.hidden    = false;
+  } else {
+    submitWrap.hidden    = true;
+  }
 
   try {
     const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=${encodeURIComponent(sheet.tab)}`;

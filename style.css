@@ -782,6 +782,13 @@ h1, h2, h3 {
 }
 @keyframes spin { to { transform: rotate(360deg); } }
 
+/* ── Submit button ───────────────────────────────────────── */
+.lb-submit-wrap {
+  text-align: center;
+  margin-top: 2rem;
+}
+.lb-submit-wrap[hidden] { display: none; }
+
 /* ── Table ───────────────────────────────────────────────── */
 .lb-table-wrap {
   overflow-x: auto;
