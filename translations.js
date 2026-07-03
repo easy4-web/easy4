@@ -73,6 +73,10 @@ var TRANSLATIONS = {
     'sponsors.tee.getintouch':  'Get in touch',
     'sponsors.visit':           'Visit →',
     'sponsors.visit.website':   'Visit website →',
+    'sponsors.donate.title':    'Support the Club',
+    'sponsors.donate.sub':      'Want to support Easy4 or help with course maintenance? You can make a donation to the club\'s account.',
+    'sponsors.donate.recipient': 'Recipient',
+    'sponsors.donors.title':    'Supporters',
 
     /* ── Sponsor descriptions ────────────────────────────── */
     'sp.atea.desc':       'Leading IT infrastructure and services provider across the Nordics and Baltics.',
@@ -182,6 +186,10 @@ var TRANSLATIONS = {
     'sponsors.tee.getintouch':  'Võta ühendust',
     'sponsors.visit':           'Külasta →',
     'sponsors.visit.website':   'Külasta veebilehte →',
+    'sponsors.donate.title':    'Toeta klubi',
+    'sponsors.donate.sub':      'Soovid toetada Easy4 tegevust või rajahooldust? Saad teha annetuse klubi kontole.',
+    'sponsors.donate.recipient': 'Saaja',
+    'sponsors.donors.title':    'Toetajad',
 
     /* ── Sponsor descriptions ────────────────────────────── */
     'sp.atea.desc':       'Juhtiv IT-infrastruktuuri ja -teenuste pakkuja Põhjamaades ja Baltikumis.',

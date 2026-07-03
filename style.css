@@ -1056,6 +1056,43 @@ h1, h2, h3 {
   margin-bottom: 28px;
 }
 
+/* ── Donation block ── */
+.sp-donate-card {
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(247,148,30,.2);
+  border-radius: 10px;
+  padding: 20px 24px;
+  margin-bottom: 32px;
+  max-width: 420px;
+}
+.sp-donate-line {
+  color: var(--white);
+  font-size: .95rem;
+  margin: 6px 0;
+}
+.sp-donate-line strong { color: var(--orange); }
+.sp-donors-title {
+  font-size: 1.1rem;
+  color: var(--white);
+  margin-bottom: 12px;
+}
+.sp-donors-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 24px;
+}
+.sp-donors-list li {
+  color: rgba(255,255,255,.7);
+  font-size: .9rem;
+}
+.sp-donors-list:empty::after {
+  content: '—';
+  color: rgba(255,255,255,.3);
+}
+
 /* ── Name sponsor grid ── */
 .sp-name-grid {
   display: flex;
